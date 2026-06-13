@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import { siteName, siteUrl } from "@/lib/site-data";
 
@@ -93,6 +94,22 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <Script
+          id="plausible-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }",
+          }}
+        />
+        <Script
+          id="plausible-analytics"
+          defer
+          data-domain="growagarden-2.online"
+          src="https://plausible.ai-baby-dance.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js"
+          strategy="beforeInteractive"
+        />
+        <Script src="https://pl29733603.effectivecpmnetwork.com/4d/d2/5e/4dd25eff42761fd3a48e4d71aebd860e.js" />
       </body>
     </html>
   );
