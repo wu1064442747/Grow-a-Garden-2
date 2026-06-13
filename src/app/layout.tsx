@@ -46,16 +46,32 @@ export default function RootLayout({
         <header className="site-header">
           <div className="page-shell nav-bar">
             <Link className="brand" href="/" aria-label="Grow a Garden 2 Guide">
-              <span aria-hidden="true">G2</span>
+              <span aria-hidden="true">🌱</span>
               <strong>Grow a Garden 2 Guide</strong>
             </Link>
             <nav aria-label="Primary navigation">
-              <Link href="/codes">Codes</Link>
-              <Link href="/guides/beginner-guide">Beginner</Link>
-              <Link href="/guides/seeds-tier-list">Seeds</Link>
-              <Link href="/stock-tracker">Stock</Link>
-              <Link href="/community-questions">Questions</Link>
+              <Link href="/guides/beginner-guide">Guides⌄</Link>
+              <Link href="/stock-tracker">Tools⌄</Link>
+              <Link href="/guides/seeds-tier-list">Seeds⌄</Link>
+              <Link href="/guides/weather-events">Weather⌄</Link>
+              <Link href="/guides/pets-guide">Pets⌄</Link>
+              <Link href="/guides/guild-guide">Guilds</Link>
+              <Link href="/community-questions">Updates</Link>
             </nav>
+            <form className="nav-search" action="/community-questions">
+              <label className="sr-only" htmlFor="site-search">
+                Search guides
+              </label>
+              <input
+                id="site-search"
+                name="q"
+                placeholder="Search guides, tools, seeds..."
+                type="search"
+              />
+              <button type="submit" aria-label="Search">
+                🔍
+              </button>
+            </form>
           </div>
         </header>
         {children}
