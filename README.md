@@ -26,6 +26,27 @@ npm run lint
 npm run build
 ```
 
+## Dokploy Deployment
+
+This repository publishes a Docker image to GitHub Container Registry on every
+push to `main`.
+
+Use this image in Dokploy:
+
+```text
+ghcr.io/wu1064442747/grow-a-garden-2:latest
+```
+
+Dokploy application settings:
+
+- Source Type: Docker
+- Docker Image: `ghcr.io/wu1064442747/grow-a-garden-2:latest`
+- Registry URL: `ghcr.io`
+- Exposed port / domain port: `3000`
+
+If the GHCR package is private, add a GHCR registry credential in Dokploy with
+your GitHub username and a classic token that can read packages.
+
 ## Content Source
 
 Core guide content is stored in `src/lib/site-data.ts`.
