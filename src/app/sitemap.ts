@@ -29,6 +29,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.86,
     },
+    {
+      url: `${siteUrl}/guides`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.88,
+    },
+    {
+      url: `${siteUrl}/search`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.45,
+    },
     ...guides.map((guide) => ({
       url: `${siteUrl}/guides/${guide.slug}`,
       lastModified: now,

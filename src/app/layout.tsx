@@ -51,15 +51,15 @@ export default function RootLayout({
               <strong>Grow a Garden 2 Guide</strong>
             </Link>
             <nav aria-label="Primary navigation">
-              <Link href="/guides/beginner-guide">Guides⌄</Link>
-              <Link href="/stock-tracker">Tools⌄</Link>
-              <Link href="/guides/seeds-tier-list">Seeds⌄</Link>
-              <Link href="/guides/weather-events">Weather⌄</Link>
-              <Link href="/guides/pets-guide">Pets⌄</Link>
+              <Link href="/guides">Guides</Link>
+              <Link href="/codes">Codes</Link>
+              <Link href="/stock-tracker">Stock</Link>
+              <Link href="/guides/seeds-tier-list">Seeds</Link>
+              <Link href="/guides/pets-guide">Pets</Link>
               <Link href="/guides/guild-guide">Guilds</Link>
               <Link href="/community-questions">Updates</Link>
             </nav>
-            <form className="nav-search" action="/community-questions">
+            <form className="nav-search" action="/search">
               <label className="sr-only" htmlFor="site-search">
                 Search guides
               </label>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StructuredData } from "@/app/structured-data";
-import { currentCodes, siteUrl } from "@/lib/site-data";
+import { currentCodes, siteUrl, watchedCodes } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Grow a Garden 2 Codes",
@@ -47,12 +47,12 @@ export default function CodesPage() {
 
       <section className="guide-hero">
         <div>
-          <p className="guide-meta">Updated June 13, 2026 · Daily check target</p>
+          <p className="guide-meta">Updated June 14, 2026 · Daily check target</p>
           <h1>Grow a Garden 2 Codes</h1>
           <p>
-            Track working codes, expired codes, rewards, and when each code was
-            last checked. This is an independent fan guide and not an official
-            game page.
+            Track working codes, watchlist codes, rewards, and the last checked
+            status. This page separates verified active codes from speculative
+            launch-code chatter.
           </p>
         </div>
         <aside className="quick-card">
@@ -73,6 +73,7 @@ export default function CodesPage() {
             <span role="columnheader">Reward</span>
             <span role="columnheader">Status</span>
             <span role="columnheader">Checked</span>
+            <span role="columnheader">Evidence</span>
           </div>
           {currentCodes.map((code) => (
             <div className="code-row" role="row" key={code.code}>
@@ -80,6 +81,41 @@ export default function CodesPage() {
               <span role="cell">{code.reward}</span>
               <strong role="cell">{code.status}</strong>
               <span role="cell">{code.checkedAt}</span>
+              <span role="cell">{code.evidence}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="table-section" aria-labelledby="watchlist-codes">
+        <h2 id="watchlist-codes">Watchlist codes</h2>
+        <p>
+          These are not listed as working. They are kept here only because
+          players search for them after launch.
+        </p>
+        <div className="tracker-list">
+          {watchedCodes.map((code) => (
+            <div className="tracker-row" key={code.code}>
+              <span className="guide-meta">{code.status}</span>
+              <h3>{code.code}</h3>
+              <p>{code.note}</p>
+              <small>{code.evidence}</small>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="table-section" aria-labelledby="redeem-help">
+        <h2 id="redeem-help">If a code does not work</h2>
+        <div className="tracker-list">
+          {[
+            "Copy the code exactly, with no spaces before or after it.",
+            "Rejoin a fresh server before assuming a working code expired.",
+            "Check whether the code is on the working table or only the watchlist.",
+            "Avoid videos or posts that list many launch codes without a fresh checked date.",
+          ].map((tip) => (
+            <div className="tracker-row" key={tip}>
+              <h3>{tip}</h3>
             </div>
           ))}
         </div>

@@ -2,59 +2,22 @@ import Link from "next/link";
 import { StructuredData } from "@/app/structured-data";
 import {
   currentCodes,
+  guideCategories,
   guides,
+  searchDemand,
   siteName,
   siteUrl,
   toolCards,
 } from "@/lib/site-data";
 
 const heroLinks = [
-  ["📚", "All Guides", "Browse everything", "/guides/beginner-guide"],
+  ["📚", "All Guides", "Browse everything", "/guides"],
   ["🎁", "Current Codes", "Active codes list", "/codes"],
-  ["🔧", "Live Tools", "Calculators & more", "/stock-tracker"],
+  ["🔧", "Stock Signals", "Freshness labels", "/stock-tracker"],
   ["🌱", "New to Game?", "Beginner guide", "/guides/beginner-guide"],
 ];
 
-const homepageCodes = [
-  ...currentCodes,
-  {
-    code: "GARDEN2LAUNCH",
-    reward: "2x Seed Pack, 5k Coins",
-    status: "Watch",
-  },
-  {
-    code: "GREENFINGERS",
-    reward: "10k Coins",
-    status: "Watch",
-  },
-  {
-    code: "BEEHAPPY",
-    reward: "Honey Sprinkler",
-    status: "Watch",
-  },
-  {
-    code: "RAINYDAY2",
-    reward: "2x Watering Can",
-    status: "Watch",
-  },
-];
-
-const categoryRows = [
-  ["🌿", "Getting Started", "12"],
-  ["🫘", "Seeds", "28"],
-  ["☁️", "Weather", "16"],
-  ["🛡️", "Stealing & Defense", "18"],
-  ["🐝", "Pets", "22"],
-  ["🏰", "Guilds", "14"],
-  ["🔧", "Tools & Calculators", "9"],
-];
-
 export default function Home() {
-  const startHereGuide = guides.find((guide) => guide.priority === "Start Here");
-  const priorityGuides = guides.filter((guide) => guide.priority !== "Start Here");
-  const trendingGuides = [startHereGuide, ...priorityGuides.slice(0, 5)].filter(
-    Boolean,
-  );
   const latestGuides = guides.slice(2, 7);
   const guideItemList = {
     "@context": "https://schema.org",
@@ -86,10 +49,10 @@ export default function Home() {
           <div className="hero-copy">
             <h1>Grow a Garden 2 Guide</h1>
             <p>
-              Codes, Seeds, Weather, Stealing & Defense, Pets, Guilds and Live
-              Tools.
+              Working codes, beginner routes, stock signals, badges, seeds,
+              pets, stealing defense, guilds and trading safety.
             </p>
-            <form className="hero-search" action="/community-questions">
+            <form className="hero-search" action="/search">
               <label className="sr-only" htmlFor="hero-search">
                 Search any guide or tool
               </label>
@@ -121,10 +84,10 @@ export default function Home() {
             <Link href="/codes">View All Codes →</Link>
           </div>
           <p className="checked-line">
-            <span aria-hidden="true" /> Last checked: June 13, 2026
+            <span aria-hidden="true" /> Last checked: {currentCodes[0]?.checkedAt}
           </p>
           <div className="code-list">
-            {homepageCodes.map((code) => (
+            {currentCodes.map((code) => (
               <div className="home-code-row" key={code.code}>
                 <div>
                   <strong>{code.code}</strong>
@@ -167,18 +130,19 @@ export default function Home() {
         aria-labelledby="trending-guides"
       >
         <div className="mini-section-title">
-          <h2 id="trending-guides">📈 Trending Guides</h2>
-          <Link href="/guides/beginner-guide">View All Guides →</Link>
+          <h2 id="trending-guides">📈 Player Needs This Week</h2>
+          <Link href="/guides">View All Guides →</Link>
         </div>
         <div className="trending-scroll">
-          {trendingGuides.map((guide, index) => (
+          {searchDemand.slice(0, 5).map((demand, index) => (
             <Link
               className="trending-card"
-              href={`/guides/${guide!.slug}`}
-              key={guide!.slug}
+              href={demand.href}
+              key={demand.title}
             >
               <span className={`thumb thumb-${index}`} aria-hidden="true" />
-              <strong>{guide!.title}</strong>
+              <strong>{demand.title}</strong>
+              <small>{demand.pageType}</small>
             </Link>
           ))}
         </div>
@@ -191,11 +155,11 @@ export default function Home() {
         <aside className="panel categories-panel">
           <h2>Guide Categories</h2>
           <div className="category-list">
-            {categoryRows.map(([icon, label, count]) => (
-              <Link href="/community-questions" key={label}>
-                <span aria-hidden="true">{icon}</span>
-                <strong>{label}</strong>
-                <em>{count}</em>
+            {guideCategories.map((category, index) => (
+              <Link href={category.href} key={category.label}>
+                <span aria-hidden="true">{["🌿", "🫘", "🐝", "☁️", "🏅"][index]}</span>
+                <strong>{category.label}</strong>
+                <em>{category.count}</em>
               </Link>
             ))}
           </div>
@@ -230,33 +194,33 @@ export default function Home() {
 
         <aside className="side-stack">
           <div className="panel weather-card">
-            <h2>Today&apos;s Weather</h2>
+            <h2>Freshness Rule</h2>
             <div className="weather-body">
-              <span aria-hidden="true">🌤️</span>
+              <span aria-hidden="true">⏱️</span>
               <div>
-                <strong>Partly Cloudy</strong>
-                <p>Next Event: Rain</p>
-                <em>00:18:45</em>
+                <strong>Verify live data</strong>
+                <p>Codes and stock can expire quickly.</p>
+                <em>Use status labels</em>
               </div>
             </div>
-            <Link href="/guides/weather-events">Full Weather Tracker →</Link>
+            <Link href="/stock-tracker">Open Stock Signals →</Link>
           </div>
 
           <div className="panel quick-links-card">
             <h2>Quick Links</h2>
             <Link href="/codes">All Active Codes ›</Link>
             <Link href="/stock-tracker">Restock Tracker ›</Link>
-            <Link href="/guides/seeds-tier-list">Crop Value Calculator ›</Link>
-            <Link href="/guides/weather-events">Growth Timer ›</Link>
-            <Link href="/guides/beginner-guide">Beginners Guide ›</Link>
+            <Link href="/guides/badges-achievements">Badge Checklist ›</Link>
+            <Link href="/guides/seeds-tier-list">Best Seeds ›</Link>
+            <Link href="/guides/beginner-guide">Beginner Route ›</Link>
           </div>
 
           <div className="panel community-card">
-            <h2>Join the Community</h2>
-            <p>Get updates, codes and event alerts first.</p>
+            <h2>Research Notes</h2>
+            <p>Built from current player demand across guides, video hooks, and community signals.</p>
             <div>
-              <Link href="/community-questions">Join our Discord</Link>
-              <Link href="/community-questions">Follow on X</Link>
+              <Link href="/community-questions">See demand clusters</Link>
+              <Link href="/guides">Browse guide index</Link>
             </div>
           </div>
         </aside>

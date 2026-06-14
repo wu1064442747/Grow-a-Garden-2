@@ -471,7 +471,7 @@ p {
 
 .code-row {
   display: grid;
-  grid-template-columns: 1.2fr 1.2fr 0.7fr 0.9fr;
+  grid-template-columns: 1.05fr 1.05fr 0.72fr 0.84fr minmax(220px, 1.4fr);
   gap: 14px;
   align-items: center;
   padding: 16px 18px;
@@ -507,6 +507,59 @@ p {
 
 .tracker-row {
   padding: 20px;
+}
+
+.tracker-row small,
+.search-card label,
+.trending-card small {
+  display: block;
+  color: #617568;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.tracker-row small {
+  margin-top: 12px;
+}
+
+.search-card {
+  display: grid;
+  gap: 12px;
+}
+
+.search-card input {
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: 0;
+  padding: 0 12px;
+  color: #17231b;
+  font: inherit;
+}
+
+.search-card button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--green);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.empty-state {
+  max-width: 620px;
+}
+
+.empty-state h3 {
+  color: #18301f;
+  font-size: 22px;
+}
+
+.empty-state .button {
+  width: fit-content;
+  margin-top: 16px;
 }
 
 .site-footer {

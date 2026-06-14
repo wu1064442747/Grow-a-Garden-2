@@ -4,6 +4,7 @@ import { StructuredData } from "@/app/structured-data";
 import {
   launchFacts,
   playerQuestionClusters,
+  searchDemand,
   siteName,
   siteUrl,
 } from "@/lib/site-data";
@@ -43,11 +44,12 @@ export default function CommunityQuestionsPage() {
 
       <section className="guide-hero">
         <div>
-          <p className="guide-meta">Updated June 13, 2026 · Community scan</p>
+          <p className="guide-meta">Updated June 14, 2026 · Last 30 days scan</p>
           <h1>Grow a Garden 2 Community Questions</h1>
           <p>
-            Recent research contained a lot of unrelated noise, so this page
-            keeps only the player questions that should shape the guide site.
+            Recent player demand shows the site should prioritize fast answers:
+            working codes, beginner routes, stock signals, badges, pets, seeds,
+            and trading safety.
           </p>
         </div>
         <aside className="quick-card">
@@ -72,6 +74,19 @@ export default function CommunityQuestionsPage() {
                   <li key={example}>{example}</li>
                 ))}
               </ul>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="table-section" aria-labelledby="search-demand">
+        <h2 id="search-demand">Demand-led page plan</h2>
+        <div className="tracker-list">
+          {searchDemand.map((demand) => (
+            <Link className="tracker-row" href={demand.href} key={demand.title}>
+              <span className="guide-meta">{demand.pageType}</span>
+              <h3>{demand.title}</h3>
+              <p>{demand.intent}</p>
             </Link>
           ))}
         </div>

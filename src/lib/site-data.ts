@@ -2,70 +2,170 @@ export const siteUrl = "https://growagarden-2.online";
 
 export const siteName = "Grow a Garden 2 Guide";
 
-export const currentCodes = [
+export type CodeStatus = "Working" | "Expired" | "Watching";
+
+export type GameCode = {
+  code: string;
+  reward: string;
+  status: CodeStatus;
+  checkedAt: string;
+  evidence: string;
+  note: string;
+};
+
+export const currentCodes: GameCode[] = [
   {
     code: "TEAMGREENBEAN",
     reward: "3 Green Bean Seeds",
     status: "Working",
-    checkedAt: "June 13, 2026",
+    checkedAt: "June 14, 2026",
+    evidence: "Cross-checked against current June 2026 code guides and player search demand.",
+    note: "Copy the code exactly. If it fails, rejoin a fresh server and try once before treating it as expired.",
+  },
+];
+
+export const watchedCodes: GameCode[] = [
+  {
+    code: "GARDEN2LAUNCH",
+    reward: "Unverified launch reward",
+    status: "Watching",
+    checkedAt: "June 14, 2026",
+    evidence: "Appears in speculative code chatter, but not in reliable current active-code lists.",
+    note: "Do not present this as working until it is verified in-game or by multiple current code trackers.",
+  },
+  {
+    code: "GREENFINGERS",
+    reward: "Unverified currency or seed reward",
+    status: "Watching",
+    checkedAt: "June 14, 2026",
+    evidence: "Useful as a watchlist term only.",
+    note: "Keep it out of the active table unless redemption is confirmed.",
   },
 ];
 
 export const launchFacts = [
-  "Grow a Garden 2 launched as a standalone fresh-start Roblox game on June 12, 2026.",
-  "The sequel loop adds night raids, stealing and defense pressure, guild systems, offline growth, and a circular map flow.",
-  "Launch-day coverage reported more than 400,000 concurrent players shortly after release.",
-  "Guild creation is reported at 99 Robux, with invites handled through the Guilds counter and mailbox.",
+  "Grow a Garden 2 launched on Roblox in June 2026 and quickly created demand for fast beginner routes, code checks, stock alerts, and pet/seed guidance.",
+  "Recent social and video content clusters around five needs: working codes, beginner-to-endgame progression, secret methods, stock/event timing, and badges.",
+  "The sequel loop adds day/night pressure, stealing, defense habits, guild rewards, and a fresh economy that players are still testing.",
+  "Any stock, trading, or event note should be labeled as verified, reported, or unconfirmed because these topics expire quickly.",
+];
+
+export const searchDemand = [
+  {
+    title: "Working codes and redeem errors",
+    href: "/codes",
+    intent: "Players want the active code first, then proof that stale launch codes are not working.",
+    pageType: "Daily-updated utility page",
+  },
+  {
+    title: "Beginner to endgame route",
+    href: "/guides/beginner-guide",
+    intent: "High-view videos promise complete easy, mid, and endgame paths, so the site needs scannable steps.",
+    pageType: "Evergreen guide with update notes",
+  },
+  {
+    title: "Stock, events, and trading values",
+    href: "/stock-tracker",
+    intent: "Discord and social posts package live stock, values, notifier, and event timing together.",
+    pageType: "Signal tracker with freshness labels",
+  },
+  {
+    title: "Badges and achievements",
+    href: "/guides/badges-achievements",
+    intent: "Search results already show badge guides, and achievement completion is a clear follow-up after launch.",
+    pageType: "Checklist guide",
+  },
+  {
+    title: "Seeds, pets, and money methods",
+    href: "/guides/seeds-tier-list",
+    intent: "TikTok and YouTube hooks focus on secrets, billionaire methods, best plants, and best pets.",
+    pageType: "Tables and tier explanations",
+  },
 ];
 
 export const playerQuestionClusters = [
   {
-    title: "Admin Abuse and stock timing",
-    href: "/guides/admin-abuse-stock-events",
+    title: "Codes and redeem checks",
+    href: "/codes",
     signal:
-      "Players are asking whether Admin Abuse events are gone, delayed, or still tied to update timers after GAG2 launched.",
-    examples: ["Admin Abuse gone?", "Need stocks after crafting event", "Firefly stock alerts"],
+      "Current June 2026 search results consistently surface TEAMGREENBEAN as the active code, while players still search for launch-code lists.",
+    examples: ["What is the working code?", "Why did a launch code fail?", "Where do I redeem codes?"],
   },
   {
-    title: "Pets, Venom, and trading value",
-    href: "/guides/venom-pets-trading",
+    title: "Beginner, midgame, endgame routing",
+    href: "/guides/beginner-guide",
     signal:
-      "Recent Reddit posts focus on pet demand, Venom changes, Venom services paid in Tokens, and rare pet pulls.",
-    examples: ["Are old pets still in demand?", "Venom changed?", "Need Venom on pets"],
+      "High-engagement videos package the game as a complete route problem: first money, seed shop rhythm, expansion, stealing, and endgame methods.",
+    examples: ["What should I do first?", "How do I get rich?", "What changes at night?"],
   },
   {
-    title: "Known issues and confusion",
-    href: "/guides/known-issues",
+    title: "Stock, trading, and events",
+    href: "/stock-tracker",
     signal:
-      "Players report wasp spawning problems, King Bee animation issues, gift/ticket errors, and uncertainty about whether the original GAG keeps updating.",
-    examples: ["Wasps stopped spawning", "Can't gift or use ticket", "Will updates continue?"],
+      "Community hubs advertise stock notifiers, values, codes, and event alerts together, which means a static guide alone is not enough.",
+    examples: ["Is Firefly in stock?", "What is a fair trade?", "When is the next event?"],
   },
   {
-    title: "Mixed launch reactions",
-    href: "/community-questions",
+    title: "Badges, pets, and secrets",
+    href: "/guides/badges-achievements",
     signal:
-      "Community reaction is not purely hype: players mention load problems, pricing complaints, nostalgia for the original, and doubts about whether GAG2 feels like a full sequel.",
-    examples: ["Server/load jokes", "Pricing complaints", "Is GAG2 different enough?"],
+      "Players look for concrete completion lists and secret methods, not just general descriptions of game systems.",
+    examples: ["How do I get every badge?", "Which pet is worth it?", "What secrets matter?"],
   },
 ];
 
-export const stockSignals = [
+export type StockSignalStatus = "Verified" | "Reported" | "Unconfirmed" | "Roadmap";
+
+export type StockSignal = {
+  item: string;
+  category: "Seeds" | "Gear" | "Pets" | "Events" | "Trading";
+  status: StockSignalStatus;
+  lastSeen: string;
+  sourceType: string;
+  action: string;
+  note: string;
+};
+
+export const stockSignals: StockSignal[] = [
   {
-    item: "Firefly",
-    status: "Recently reported in stock",
-    note: "Reddit posts on June 13 mention Firefly and Firefly Spiral stock with only a few minutes left.",
+    item: "Seed shop rotation",
+    category: "Seeds",
+    status: "Reported",
+    lastSeen: "June 2026 launch window",
+    sourceType: "Video guide and player discussion",
+    action: "Check every 5 minutes before spending on slow crops.",
+    note: "Multiple beginner guides emphasize shop rhythm as the first progression bottleneck.",
   },
   {
-    item: "Admin Abuse",
-    status: "Unclear schedule",
-    note: "Multiple players asked whether Admin Abuse events are gone or simply not visible beyond the update timer.",
+    item: "Night stealing window",
+    category: "Events",
+    status: "Verified",
+    lastSeen: "June 2026 launch guides",
+    sourceType: "Gameplay guide videos",
+    action: "Protect high-value plants before night or keep them away from obvious paths.",
+    note: "Stealing is a core user question because it changes garden layout from cosmetic to economic.",
   },
   {
-    item: "Crafting event stock",
-    status: "High demand",
-    note: "Players say they used stored items during crafting and need restocks, which makes stock alerts a priority feature.",
+    item: "Firefly and rare stock alerts",
+    category: "Pets",
+    status: "Reported",
+    lastSeen: "June 2026 community chatter",
+    sourceType: "Community stock signals",
+    action: "Treat as an alert only; verify in-game before trading or spending.",
+    note: "Short-lived stock reports expire too fast for a static page to call them live.",
+  },
+  {
+    item: "Trading values",
+    category: "Trading",
+    status: "Unconfirmed",
+    lastSeen: "June 2026 Discord-style demand",
+    sourceType: "Community value hubs",
+    action: "Use value pages as a second opinion, not final pricing.",
+    note: "Demand changes fast around new pets, Venom services, and event supply.",
   },
 ];
+
+export type GuidePriority = "Start Here" | "High Demand" | "Tool";
 
 export type Guide = {
   slug: string;
@@ -74,7 +174,8 @@ export type Guide = {
   updatedAt: string;
   readingTime: string;
   category: string;
-  priority: "Start Here" | "High Demand" | "Tool";
+  priority: GuidePriority;
+  keywords: string[];
   highlights: string[];
   sections: {
     heading: string;
@@ -87,37 +188,38 @@ export const guides: Guide[] = [
     slug: "beginner-guide",
     title: "Grow a Garden 2 Beginner Guide",
     description:
-      "A practical first-day route for seeds, Sheckles, night stealing, defense, and guild rewards.",
-    updatedAt: "June 13, 2026",
-    readingTime: "7 min",
+      "A practical easy, mid, and endgame route for seeds, Sheckles, expansion, night stealing, defense, and guild rewards.",
+    updatedAt: "June 14, 2026",
+    readingTime: "8 min",
     category: "Starter Route",
     priority: "Start Here",
+    keywords: ["beginner", "easy game", "mid game", "endgame", "money", "sheckles", "route"],
     highlights: [
-      "Buy cheap seeds first and reinvest every harvest.",
-      "Sell early crops quickly until your garden has repeat income.",
-      "Prepare for night before leaving high-value plants exposed.",
-      "Join an active guild as soon as weekly rewards matter.",
+      "First goal: create a repeatable harvest loop, not a perfect rare garden.",
+      "Check the seed shop before every major spend because rotation timing shapes progression.",
+      "Expand once your income can recover from a bad buy or night loss.",
+      "Treat night defense as part of your economy, not a cosmetic choice.",
     ],
     sections: [
       {
-        heading: "First 10 minutes",
+        heading: "Easy game route",
         body: [
-          "Start by turning every early harvest into more seed purchases. The opening goal is not to hold rare plants. It is to build a garden that produces enough Sheckles to recover quickly after a mistake.",
-          "Use short-growth crops while learning the shop rhythm, then start reserving space for plants that can support defense or higher-value mutation chances.",
+          "Start with cheap, fast crops and reinvest every harvest. New players lose time when they save too early for one expensive plant instead of building a garden that pays back every few minutes.",
+          "Use the first sessions to learn the seed shop rhythm, basic crop value, and where players can approach your garden at night. A stable loop matters more than one lucky purchase.",
         ],
       },
       {
-        heading: "First hour",
+        heading: "Midgame route",
         body: [
-          "Once your income is stable, stop treating every tile as pure profit space. Grow a Garden 2 adds stealing and defense pressure, so leaving valuable crops completely exposed can cost more than a slower layout.",
-          "Add defensive props and plants before night cycles become a regular problem. If you are playing solo, defense comes before cosmetic layout.",
+          "After income feels stable, split plots into three jobs: fast cash, event/mutation attempts, and safer high-value plants. That structure keeps you progressing even when stock or weather is not ideal.",
+          "Expansion becomes worthwhile when you can refill the space quickly. If a new area sits empty, the Sheckles were probably better spent on repeat production first.",
         ],
       },
       {
-        heading: "Daily routine",
+        heading: "Endgame route",
         body: [
-          "Check codes, check shop stock, harvest safe crops, handle weather events, then review guild progress. That loop gives you a reliable baseline even when you only have a short session.",
-          "If a high-value weather event is active, prioritize mutation opportunities over routine selling.",
+          "Endgame decisions should revolve around stock timing, pet utility, weather upside, and trading risk. The best route is not just the highest sell price; it is the route that survives stealing and takes advantage of rare events.",
+          "Join an active guild when weekly rewards matter. A smaller group that actually completes goals beats a large silent guild.",
         ],
       },
     ],
@@ -126,35 +228,38 @@ export const guides: Guide[] = [
     slug: "seeds-tier-list",
     title: "Best Seeds and Plants Tier List",
     description:
-      "A search-friendly tier list structure for early, mid, and late game seed decisions.",
-    updatedAt: "June 13, 2026",
-    readingTime: "6 min",
+      "A decision-first seed guide for early cash, midgame repeat income, late-game value, and mutation/event upside.",
+    updatedAt: "June 14, 2026",
+    readingTime: "7 min",
     category: "Seeds",
     priority: "High Demand",
+    keywords: ["seeds", "plants", "tier list", "best plants", "mushroom", "money method"],
     highlights: [
-      "Early game values speed and recovery.",
-      "Mid game values repeat income and mutation opportunities.",
-      "Late game values rare plants, defense utility, and weather upside.",
-      "Do not rank seeds by sell price alone.",
+      "Early game values speed, low cost, and recovery.",
+      "Midgame values repeat income plus shop availability.",
+      "Late game values event upside, defense risk, and trade demand.",
+      "A seed can be good for cash but bad for exposed night layouts.",
     ],
     sections: [
       {
         heading: "How to read the tier list",
         body: [
-          "A good Grow a Garden 2 seed is not only expensive at sale time. It also has to fit your current budget, growth cycle, stealing risk, and mutation plan.",
-          "For new players, reliable low-cost seeds can outperform rare seeds because they let you recover from bad timing, failed defense, or a shop miss.",
+          "Rank seeds by your current problem. If you are poor, the best seed is the one that cycles quickly. If you are stable, the best seed is the one that creates event or trading upside.",
+          "Do not rank by sale price alone. Growth time, stock frequency, stealing risk, and mutation potential change the real value.",
         ],
       },
       {
-        heading: "Early game picks",
+        heading: "Early picks",
         body: [
-          "Prioritize seeds that let you harvest often and reinvest quickly. The faster your garden starts cycling, the sooner you can afford defensive pieces and higher-value plants.",
+          "Use cheap crops until you can recover from a mistake. Early guides and videos keep repeating the same lesson: players who reinvest quickly reach the fun systems faster.",
+          "If stock is limited, buy enough low-cost seeds to keep plots active before saving for a rare plant.",
         ],
       },
       {
-        heading: "Late game picks",
+        heading: "Money methods",
         body: [
-          "At higher budgets, choose plants around weather and defense strategy. A slower plant can be worth it if it has better mutation upside or supports your base during night stealing windows.",
+          "Recent TikTok demand around mushroom methods and billionaire tips means this page should track concrete methods separately from the tier list. Methods need date labels because they may be patched or balanced.",
+          "When a method depends on a bug, stock window, or event, treat it as temporary and verify before reshaping your whole garden around it.",
         ],
       },
     ],
@@ -163,30 +268,31 @@ export const guides: Guide[] = [
     slug: "weather-events",
     title: "Weather Events and Mutations Guide",
     description:
-      "What to do during Rain, Lightning, Rainbow, Snowfall, Starfall, and seed events.",
-    updatedAt: "June 13, 2026",
-    readingTime: "5 min",
+      "What to do during Rain, Lightning, Rainbow, Snowfall, Starfall, and seed events without wasting high-value crops.",
+    updatedAt: "June 14, 2026",
+    readingTime: "6 min",
     category: "Mutations",
     priority: "High Demand",
+    keywords: ["weather", "mutation", "rain", "lightning", "starfall", "event"],
     highlights: [
       "Weather windows are when ordinary crops can become high-value runs.",
-      "Lightning and Starfall are high-priority event checks.",
-      "Keep spare plots ready before rare events happen.",
+      "Keep open plots and spare seeds ready before rare events appear.",
       "Do not sell everything right before mutation-friendly weather.",
+      "Separate confirmed event rules from community guesses.",
     ],
     sections: [
       {
         heading: "Why weather matters",
         body: [
-          "Weather events change the value of your current garden. If you only play on autopilot, you can miss the best mutation windows and sell too early.",
+          "Weather events change the value of your current garden. If you play on autopilot, you can sell too early and miss the best mutation window.",
           "Use regular harvests for income, but keep enough growing space ready for event-driven upside.",
         ],
       },
       {
-        heading: "High-priority events",
+        heading: "Event checklist",
         body: [
-          "Lightning, Starfall, Rainbow, and special seed events deserve immediate attention because players are already searching for which events are worth stopping their normal route.",
-          "During rare events, avoid rearranging the entire garden. Focus on planting, protecting, and harvesting the crops most likely to benefit.",
+          "When weather starts, first plant or protect the crops that benefit most, then harvest low-value crops only if you need space. Avoid rebuilding the whole garden mid-event.",
+          "If an event rule is only reported by players, label it as reported until the same effect appears in-game for you.",
         ],
       },
     ],
@@ -195,30 +301,31 @@ export const guides: Guide[] = [
     slug: "stealing-guide",
     title: "Night Stealing and Defense Guide",
     description:
-      "How stealing works, how to reduce losses, and which defensive habits matter first.",
-    updatedAt: "June 13, 2026",
+      "How night stealing changes your garden layout, what to protect first, and how to reduce avoidable losses.",
+    updatedAt: "June 14, 2026",
     readingTime: "6 min",
     category: "Defense",
     priority: "High Demand",
+    keywords: ["night", "stealing", "defense", "protect plants", "raids"],
     highlights: [
       "Night changes the risk profile of every valuable crop.",
       "Do not leave your best plants exposed in obvious rows.",
-      "Defense props matter before cosmetics.",
-      "Stealing strategy is also about timing, not only movement.",
+      "Defense habits matter before cosmetic layout.",
+      "Stealing strategy is about timing and pathing, not only movement.",
     ],
     sections: [
       {
         heading: "Stealing basics",
         body: [
-          "Grow a Garden 2 makes night stealing one of the biggest differences from the first game. That means your garden layout is now part of your economy.",
-          "Players should treat exposed high-value crops as a risk, especially when playing on busy servers or before leaving the game unattended.",
+          "Grow a Garden 2 makes night stealing one of the biggest differences from the first game. That means your layout is part of your economy.",
+          "Players should treat exposed high-value crops as risk, especially on busy servers or before leaving valuable plants unattended.",
         ],
       },
       {
         heading: "Defense priorities",
         body: [
-          "Start with simple blocking and trap habits before chasing expensive layouts. A basic defensive plan that you use every night is better than a perfect layout you cannot afford.",
-          "Place valuable crops where they are harder to reach quickly, and reserve obvious open paths for lower-value bait or safer crops.",
+          "Start with simple blocking and bait habits before chasing expensive layouts. A basic defensive plan that you actually use every night beats a perfect layout you cannot afford.",
+          "Place valuable crops where they are harder to reach quickly, and reserve obvious paths for lower-value crops or bait.",
         ],
       },
     ],
@@ -227,29 +334,30 @@ export const guides: Guide[] = [
     slug: "guild-guide",
     title: "Guild Guide and Weekly Rewards",
     description:
-      "How guilds fit into progression, rewards, leaderboards, and group play.",
-    updatedAt: "June 13, 2026",
-    readingTime: "4 min",
+      "How guilds fit into progression, weekly rewards, leaderboards, group play, and daily route decisions.",
+    updatedAt: "June 14, 2026",
+    readingTime: "5 min",
     category: "Guilds",
     priority: "High Demand",
+    keywords: ["guild", "weekly rewards", "leaderboard", "group"],
     highlights: [
-      "Guilds are part of the official core loop.",
-      "Weekly rewards make activity consistency important.",
-      "Solo players still benefit from joining a focused guild.",
+      "Guilds are part of the core return loop.",
+      "Weekly rewards make consistency more important than one long session.",
+      "Solo players still benefit from joining an active guild.",
       "Guild goals should influence your daily route.",
     ],
     sections: [
       {
         heading: "Why join a guild",
         body: [
-          "The official game description calls out guilds and weekly rewards directly, so guild progression is not a side feature. It is likely to become one of the main reasons players return every week.",
-          "Join an active guild early if you want reward consistency, leaderboard progress, and help understanding fast-changing strategies.",
+          "Guild progression matters because it gives players a reason to return after the first launch rush. If you only play solo, you may miss weekly reward momentum.",
+          "Join a guild with activity during your play window. A quiet large guild is often worse than a smaller group that completes goals.",
         ],
       },
       {
-        heading: "What to look for",
+        heading: "Guild routine",
         body: [
-          "Look for guilds with active players during your usual play window. A quiet guild with a high member count may be worse than a smaller group that actually completes weekly goals.",
+          "Check guild goals before spending your whole budget. If a weekly objective rewards a specific crop or activity, adjust the route early instead of trying to catch up at the end.",
         ],
       },
     ],
@@ -258,29 +366,63 @@ export const guides: Guide[] = [
     slug: "pets-guide",
     title: "Pets Guide and Pet Tier List",
     description:
-      "A starting framework for pet value, acquisition pressure, and beginner decisions.",
-    updatedAt: "June 13, 2026",
-    readingTime: "5 min",
+      "A practical framework for pet utility, acquisition pressure, beginner value, and trade demand.",
+    updatedAt: "June 14, 2026",
+    readingTime: "6 min",
     category: "Pets",
     priority: "High Demand",
+    keywords: ["pets", "pet tier list", "best pets", "venom", "trading"],
     highlights: [
       "Pets are a major search demand immediately after launch.",
       "Beginner value depends on consistency, not rarity alone.",
-      "Track acquisition methods separately from tier ranking.",
-      "Update this page whenever pet balance or stock changes.",
+      "Track acquisition method separately from tier ranking.",
+      "Update pet pages whenever balance, stock, or trade demand changes.",
     ],
     sections: [
       {
         heading: "How pets should be ranked",
         body: [
-          "Rank pets by the job they perform: income support, mutation support, defense help, utility, or rare-event upside. A rare pet is not automatically the best pet for a new account.",
+          "Rank pets by job: income support, mutation support, defense help, utility, or event upside. A rare pet is not automatically the best pet for a new account.",
           "The strongest beginner pet is the one that improves your daily loop immediately.",
         ],
       },
       {
         heading: "What to track",
         body: [
-          "For each pet, track acquisition method, stock behavior, practical value, and whether it helps early or late game. That structure makes the guide more useful than a simple rarity list.",
+          "For each pet, track acquisition method, stock behavior, practical value, and whether it helps early or late game. That structure is more useful than a simple rarity list.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "badges-achievements",
+    title: "Badges and Achievements Guide",
+    description:
+      "A completion checklist for Grow a Garden 2 badges, what to verify first, and how to avoid wasting time on unclear achievements.",
+    updatedAt: "June 14, 2026",
+    readingTime: "5 min",
+    category: "Badges",
+    priority: "High Demand",
+    keywords: ["badges", "achievements", "completion", "checklist"],
+    highlights: [
+      "Badge searches are already visible in current guide results.",
+      "Completion pages should separate confirmed badges from rumored ones.",
+      "Every badge needs requirement, reward, difficulty, and verification date.",
+      "Achievement hunters need checklists more than long prose.",
+    ],
+    sections: [
+      {
+        heading: "What this page should track",
+        body: [
+          "A badge guide should list the badge name, requirement, reward if any, difficulty, and last verification date. That gives completion-focused players a faster answer than a paragraph-heavy article.",
+          "If a badge requirement changes or depends on an event, mark it as reported instead of confirmed.",
+        ],
+      },
+      {
+        heading: "Completion route",
+        body: [
+          "Start with badges that overlap normal progression: codes, first expansion, basic selling, guild participation, and early event participation. Save rare stock or event badges until you have a stable economy.",
+          "Take screenshots or notes when a badge triggers. Early launch information changes fast, and exact trigger conditions are often discovered by players before formal guides catch up.",
         ],
       },
     ],
@@ -289,36 +431,31 @@ export const guides: Guide[] = [
     slug: "admin-abuse-stock-events",
     title: "Admin Abuse, Stock, and Event Timing Guide",
     description:
-      "Track what players are asking about Admin Abuse events, Firefly stock, and post-crafting restock pressure.",
-    updatedAt: "June 13, 2026",
+      "How to interpret Admin Abuse questions, stock alerts, Firefly reports, and event timing without treating rumors as live truth.",
+    updatedAt: "June 14, 2026",
     readingTime: "5 min",
     category: "Events",
     priority: "High Demand",
+    keywords: ["admin abuse", "stock", "firefly", "event timing", "restock"],
     highlights: [
       "Treat Admin Abuse timing as unconfirmed until an in-game timer or official post appears.",
       "Firefly stock is a live-alert topic, not a static guide topic.",
       "Crafting events can drain stored items and create sudden restock demand.",
-      "Stock tracker pages should separate confirmed stock from player reports.",
+      "Stock pages should separate confirmed stock from player reports.",
     ],
     sections: [
       {
-        heading: "What changed in player demand",
+        heading: "What players need",
         body: [
-          "The newest community scan shows players asking whether Admin Abuse events are gone, delayed, or hidden behind the update timer after the Grow a Garden 2 launch.",
-          "That makes event timing and stock alerts more valuable than another generic guide. Players want to know what is available right now and whether they should wait for an event.",
+          "Players want to know what is available right now, whether they should wait, and whether an event is real. A good page should answer those questions with status labels, not vague hype.",
+          "For static pages, use reported signals as alerts. For live pages, show last seen time and source type.",
         ],
       },
       {
-        heading: "How to use stock reports",
+        heading: "How to use reports",
         body: [
-          "Use player reports as alerts, not final truth. A post saying Firefly is in stock with two or three minutes left is useful, but it expires quickly and should be treated differently from a verified live tracker.",
-          "For now, check stock manually in-game before making trades or spending saved currency based on a report.",
-        ],
-      },
-      {
-        heading: "Site tracking plan",
-        body: [
-          "The stock tracker should log item name, reported status, time seen, source type, and whether the status was verified. That keeps quick community alerts useful without pretending they are official data.",
+          "Use player reports as alerts, not final truth. A post saying an item is in stock with a few minutes left is useful, but it expires quickly.",
+          "Check stock manually in-game before making trades or spending saved currency based on a report.",
         ],
       },
     ],
@@ -328,36 +465,30 @@ export const guides: Guide[] = [
     title: "Venom, Pets, and Trading Demand Guide",
     description:
       "A practical guide for pet demand, Venom questions, gifting errors, and trade-risk checks.",
-    updatedAt: "June 13, 2026",
+    updatedAt: "June 14, 2026",
     readingTime: "6 min",
-    category: "Pets",
+    category: "Trading",
     priority: "High Demand",
+    keywords: ["venom", "trading", "values", "pets", "gift error", "tickets"],
     highlights: [
       "Players are asking whether older pets are still in demand.",
-      "Venom appears in multiple recent pet-related questions.",
-      "Do not price trades from a single Reddit report.",
+      "Venom appears in multiple pet and trading questions.",
+      "Do not price trades from a single report.",
       "Gift and ticket errors should be treated as known issues before blaming the other player.",
     ],
     sections: [
       {
         heading: "Why Venom needs its own guide",
         body: [
-          "Recent community posts mention Venom value, Venom services paid in Tokens, and confusion over whether Venom behavior changed. That is enough demand to split Venom out from a generic pets tier list.",
-          "Until exact mechanics are verified in-game, the safest advice is to document what the effect is supposed to do, how players are pricing it, and what changed reports are appearing.",
-        ],
-      },
-      {
-        heading: "Pet demand checks",
-        body: [
-          "When checking whether a pet is still in demand, separate rarity, current utility, visual appeal, and event availability. A pet can be popular because it is useful, because it is cute, or because supply is temporarily low.",
-          "Recent posts mention rare pet excitement and demand uncertainty, which means a simple S-tier list is not enough. Add a demand status and last-seen notes when possible.",
+          "Recent community chatter around Venom value, Venom services, and pet demand makes this a separate trading topic, not just a pet-tier-list footnote.",
+          "Until exact mechanics are verified in-game, document the expected effect, player pricing behavior, and any changed reports separately.",
         ],
       },
       {
         heading: "Trading safety",
         body: [
-          "If gifting or tickets fail, do not assume a trade partner is scamming. Recent player reports mention gift and ticket errors lasting for hours.",
-          "For valuable trades, wait until both players can confirm the gifting flow works in a low-risk exchange first.",
+          "If gifting or tickets fail, do not assume a trade partner is scamming. Treat repeated gift errors as a possible server or account-state issue first.",
+          "For valuable trades, test with a low-value item before moving rare pets or event items.",
         ],
       },
     ],
@@ -366,37 +497,31 @@ export const guides: Guide[] = [
     slug: "known-issues",
     title: "Known Issues and Player Questions",
     description:
-      "Current community-reported issues: wasps, King Bee animation, gift errors, update confusion, and GAG2 launch concerns.",
-    updatedAt: "June 13, 2026",
+      "Current community-reported issues: gift errors, stock confusion, update uncertainty, and launch-window bugs.",
+    updatedAt: "June 14, 2026",
     readingTime: "5 min",
     category: "Issues",
     priority: "High Demand",
+    keywords: ["bugs", "known issues", "gift error", "ticket error", "not working"],
     highlights: [
-      "Wasps may stop spawning for some players after switching gardens.",
-      "King Bee animation issues have been reported by players.",
       "Gift and ticket errors are appearing in community reports.",
-      "Players are unsure how GAG2 affects updates for the original game.",
+      "Stock and event reports can expire before a player reaches the shop.",
+      "Some players are unsure how Grow a Garden 2 affects the original game.",
+      "Bug pages should separate workaround, status, and evidence.",
     ],
     sections: [
       {
-        heading: "Wasp and King Bee reports",
+        heading: "How to read bug reports",
         body: [
-          "One recent player report says wasps stopped spawning on the main island after switching to a honey garden, and that King Bee appeared without proper animations.",
-          "This should be treated as a community-reported issue, not a confirmed universal bug. If it happens, switch sessions, check whether the issue is garden-specific, and avoid spending resources until spawning behavior returns.",
+          "A useful issues page should show the symptom, likely scope, workaround, and whether the problem is confirmed or only reported. That prevents players from wasting rare items while debugging.",
+          "If a problem disappears after switching servers, say that clearly. Server-specific bugs need different advice from account-wide bugs.",
         ],
       },
       {
-        heading: "Gift and ticket errors",
+        heading: "High-risk issues",
         body: [
-          "Players have reported being unable to gift pets or fruits, or use tickets, even when friends see the same error. That suggests a server-side or account-state issue may be involved.",
-          "Before attempting high-value gifts, test with a low-value item and avoid repeated retry loops if the same error persists.",
-        ],
-      },
-      {
-        heading: "Original GAG update confusion",
-        body: [
-          "The launch of Grow a Garden 2 has created confusion about whether the original Grow a Garden will continue receiving updates and Admin Abuse events.",
-          "Until there is a clear official schedule, the site should track the two games separately and label uncertain event information clearly.",
+          "Gift, ticket, trading, and stock issues are higher risk than visual bugs because they can cost currency or rare items. Put those near the top of the page.",
+          "For visual or animation issues, suggest session switching and delay spending until the state looks normal again.",
         ],
       },
     ],
@@ -407,29 +532,79 @@ export const toolCards = [
   {
     title: "Codes Tracker",
     href: "/codes",
-    description: "Working codes, rewards, and last checked status.",
-    status: "Live",
+    description: "Working code first, watchlist codes separated, and redeem troubleshooting.",
+    status: "Verified",
   },
   {
     title: "Stock Tracker",
     href: "/stock-tracker",
-    description: "Seed, gear, pet, event, and community stock alert hub.",
+    description: "Seeds, pets, events, trading signals, and freshness labels.",
     status: "Signals",
   },
   {
-    title: "Mutation Planner",
-    href: "/guides/weather-events",
-    description: "Weather-first route planning for mutation windows.",
-    status: "Guide",
+    title: "Guide Directory",
+    href: "/guides",
+    description: "All guides grouped by real search intent, not fake category counts.",
+    status: "Index",
   },
   {
     title: "Community Questions",
     href: "/community-questions",
-    description: "Latest player questions from Reddit and launch coverage.",
-    status: "New",
+    description: "What the last 30 days of player demand says to build next.",
+    status: "Research",
+  },
+];
+
+export const guideCategories = [
+  {
+    label: "Start Here",
+    href: "/guides/beginner-guide",
+    count: guides.filter((guide) => guide.priority === "Start Here").length,
+  },
+  {
+    label: "Seeds & Plants",
+    href: "/guides/seeds-tier-list",
+    count: guides.filter((guide) => guide.category === "Seeds").length,
+  },
+  {
+    label: "Pets & Trading",
+    href: "/guides/pets-guide",
+    count: guides.filter((guide) => ["Pets", "Trading"].includes(guide.category)).length,
+  },
+  {
+    label: "Events & Stock",
+    href: "/stock-tracker",
+    count: guides.filter((guide) => ["Events", "Mutations"].includes(guide.category)).length,
+  },
+  {
+    label: "Completion",
+    href: "/guides/badges-achievements",
+    count: guides.filter((guide) => guide.category === "Badges").length,
   },
 ];
 
 export function getGuideBySlug(slug: string) {
   return guides.find((guide) => guide.slug === slug);
+}
+
+export function searchGuides(query: string) {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return guides;
+  }
+
+  return guides.filter((guide) => {
+    const searchableText = [
+      guide.title,
+      guide.description,
+      guide.category,
+      ...guide.keywords,
+      ...guide.highlights,
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return searchableText.includes(normalizedQuery);
+  });
 }
