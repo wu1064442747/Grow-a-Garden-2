@@ -76,7 +76,8 @@ p {
   font-size: 16px;
 }
 
-.brand span {
+.brand span,
+.brand img {
   display: grid;
   width: 34px;
   height: 34px;
@@ -86,6 +87,10 @@ p {
   background: #e7f7df;
   color: var(--green-strong);
   font-weight: 900;
+}
+
+.brand img {
+  object-fit: cover;
 }
 
 .nav-bar nav,
@@ -672,12 +677,12 @@ p {
   font-size: 22px;
 }
 
-.brand span {
-  width: auto;
-  height: auto;
+.brand span,
+.brand img {
+  width: 40px;
+  height: 40px;
   border: 0;
   background: transparent;
-  font-size: 34px;
   line-height: 1;
 }
 

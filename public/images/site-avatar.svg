@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Grow a Garden 2 Guide avatar">
+  <defs>
+    <linearGradient id="sky" x1="22" x2="106" y1="14" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#efffe8"/>
+      <stop offset="1" stop-color="#bceea7"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="38" x2="92" y1="35" y2="91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5fd65f"/>
+      <stop offset="1" stop-color="#15843b"/>
+    </linearGradient>
+    <linearGradient id="bean" x1="49" x2="83" y1="50" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff4a8"/>
+      <stop offset="1" stop-color="#f3c95d"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#164b2a"/>
+  <circle cx="64" cy="64" r="52" fill="url(#sky)"/>
+  <path d="M26 94c9-14 22-22 38-22s29 8 38 22v13H26V94Z" fill="#2d8c43"/>
+  <path d="M64 89V49" fill="none" stroke="#146d35" stroke-linecap="round" stroke-width="8"/>
+  <path d="M61 55C44 36 25 39 20 58c16 5 31 2 41-3Z" fill="url(#leaf)"/>
+  <path d="M67 54c13-22 34-24 44-8-13 12-29 15-44 8Z" fill="url(#leaf)"/>
+  <path d="M52 75c0-15 8-27 12-27s12 12 12 27c0 14-5 25-12 25S52 89 52 75Z" fill="url(#bean)" stroke="#b07b20" stroke-width="3"/>
+  <path d="M64 55c-4 9-4 23 0 36" fill="none" stroke="#b07b20" stroke-linecap="round" stroke-width="3" opacity=".75"/>
+  <circle cx="44" cy="88" r="5" fill="#9ee56b"/>
+  <circle cx="86" cy="91" r="4" fill="#9ee56b"/>
+  <path d="M34 105h60" stroke="#d8f6c8" stroke-linecap="round" stroke-width="5" opacity=".8"/>
+</svg>

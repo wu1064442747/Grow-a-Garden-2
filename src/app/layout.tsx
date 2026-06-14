@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
@@ -47,7 +48,13 @@ export default function RootLayout({
         <header className="site-header">
           <div className="page-shell nav-bar">
             <Link className="brand" href="/" aria-label="Grow a Garden 2 Guide">
-              <span aria-hidden="true">🌱</span>
+              <Image
+                src="/images/site-avatar.svg"
+                alt=""
+                aria-hidden="true"
+                width="40"
+                height="40"
+              />
               <strong>Grow a Garden 2 Guide</strong>
             </Link>
             <nav aria-label="Primary navigation">
