@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { stockSignals, siteUrl } from "@/lib/site-data";
+import { siteUrl, stockPredictions, stockSignals } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Grow a Garden 2 Stock Tracker",
@@ -57,6 +57,29 @@ export default function StockTrackerPage() {
             <div className="tracker-row" key={title}>
               <h3>{title}</h3>
               <p>{description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="table-section" aria-labelledby="prediction-board">
+        <h2 id="prediction-board">Community prediction board</h2>
+        <p>
+          These windows came from the Discord stock prediction channel. The
+          channel itself warns that predictions are not always accurate, so use
+          them as check reminders rather than guaranteed live stock.
+        </p>
+        <div className="prediction-grid">
+          {stockPredictions.map((prediction) => (
+            <div className="tracker-row prediction-card" key={prediction.item}>
+              <span className="guide-meta">{prediction.category} · Reported</span>
+              <h3>{prediction.item}</h3>
+              <ul>
+                {prediction.windows.map((window) => (
+                  <li key={window}>{window}</li>
+                ))}
+              </ul>
+              <small>{prediction.note}</small>
             </div>
           ))}
         </div>

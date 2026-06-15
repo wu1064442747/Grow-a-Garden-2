@@ -510,8 +510,36 @@ p {
   gap: 14px;
 }
 
+.prediction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
 .tracker-row {
   padding: 20px;
+}
+
+.prediction-card ul {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  list-style: none;
+}
+
+.prediction-card li {
+  border: 1px solid #cae1c1;
+  border-radius: 6px;
+  background: #f1faed;
+  padding: 8px 10px;
+  color: #26472f;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.status-expired {
+  color: #a33b21;
 }
 
 .tracker-row small,
@@ -622,6 +650,7 @@ p {
   .tool-grid,
   .guide-grid,
   .signal-grid,
+  .prediction-grid,
   .compact {
     grid-template-columns: 1fr;
   }

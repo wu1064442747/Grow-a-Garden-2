@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StructuredData } from "@/app/structured-data";
-import { currentCodes, siteUrl, watchedCodes } from "@/lib/site-data";
+import {
+  currentCodes,
+  expiredCodes,
+  siteUrl,
+  watchedCodes,
+} from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Grow a Garden 2 Codes",
@@ -52,7 +57,7 @@ export default function CodesPage() {
           <p>
             Track working codes, watchlist codes, rewards, and the last checked
             status. This page separates verified active codes from speculative
-            launch-code chatter.
+            launch-code chatter and old codes from the pre-launch history.
           </p>
         </div>
         <aside className="quick-card">
@@ -100,6 +105,35 @@ export default function CodesPage() {
               <h3>{code.code}</h3>
               <p>{code.note}</p>
               <small>{code.evidence}</small>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="table-section" aria-labelledby="expired-codes">
+        <h2 id="expired-codes">Expired and historical codes</h2>
+        <p>
+          These appeared in the community codes history before TEAMGREENBEAN was
+          listed as the full active set. Keep them here for players checking old
+          videos, not as redeem recommendations.
+        </p>
+        <div className="code-table" role="table" aria-label="Expired codes">
+          <div className="code-row code-head" role="row">
+            <span role="columnheader">Code</span>
+            <span role="columnheader">Reward</span>
+            <span role="columnheader">Status</span>
+            <span role="columnheader">Checked</span>
+            <span role="columnheader">Evidence</span>
+          </div>
+          {expiredCodes.map((code) => (
+            <div className="code-row" role="row" key={code.code}>
+              <code role="cell">{code.code}</code>
+              <span role="cell">{code.reward}</span>
+              <strong className="status-expired" role="cell">
+                {code.status}
+              </strong>
+              <span role="cell">{code.checkedAt}</span>
+              <span role="cell">{code.evidence}</span>
             </div>
           ))}
         </div>

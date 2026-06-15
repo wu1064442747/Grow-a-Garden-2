@@ -18,8 +18,9 @@ export const currentCodes: GameCode[] = [
     code: "TEAMGREENBEAN",
     reward: "3 Green Bean Seeds",
     status: "Working",
-    checkedAt: "June 14, 2026",
-    evidence: "Cross-checked against current June 2026 code guides and player search demand.",
+    checkedAt: "June 15, 2026",
+    evidence:
+      "Discord codes channel listed TEAMGREENBEAN as the full active list on June 13, 2026; kept as the only active code after review.",
     note: "Copy the code exactly. If it fails, rejoin a fresh server and try once before treating it as expired.",
   },
 ];
@@ -43,8 +44,60 @@ export const watchedCodes: GameCode[] = [
   },
 ];
 
+export const expiredCodes: GameCode[] = [
+  {
+    code: "bloodharvest",
+    reward: "25 Emeralds",
+    status: "Expired",
+    checkedAt: "June 15, 2026",
+    evidence: "Discord codes history shows it before the June 13 active-code reset.",
+    note: "Keep it in the historical list only; do not promote it as active.",
+  },
+  {
+    code: "100Million",
+    reward: "25 Emeralds",
+    status: "Expired",
+    checkedAt: "June 15, 2026",
+    evidence: "Discord codes history shows it before the June 13 active-code reset.",
+    note: "Keep it in the historical list only; do not promote it as active.",
+  },
+  {
+    code: "weaponupgrade",
+    reward: "25 Emeralds",
+    status: "Expired",
+    checkedAt: "June 15, 2026",
+    evidence: "Discord codes history shows it before the June 13 active-code reset.",
+    note: "Keep it in the historical list only; do not promote it as active.",
+  },
+  {
+    code: "newclasses",
+    reward: "Unlisted reward",
+    status: "Expired",
+    checkedAt: "June 15, 2026",
+    evidence: "Discord codes history shows it before the June 13 active-code reset.",
+    note: "Useful for players checking old videos or posts.",
+  },
+  {
+    code: "forest",
+    reward: "Unlisted reward",
+    status: "Expired",
+    checkedAt: "June 15, 2026",
+    evidence: "Discord codes history shows it before the June 13 active-code reset.",
+    note: "Useful for players checking old videos or posts.",
+  },
+  {
+    code: "forestpt2",
+    reward: "Unlisted reward",
+    status: "Expired",
+    checkedAt: "June 15, 2026",
+    evidence: "Discord codes history shows it before the June 13 active-code reset.",
+    note: "Useful for players checking old videos or posts.",
+  },
+];
+
 export const launchFacts = [
-  "Grow a Garden 2 launched on Roblox in June 2026 and quickly created demand for fast beginner routes, code checks, stock alerts, and pet/seed guidance.",
+  "Grow a Garden 2 launch was announced for June 13, 2026 at 10:00 AM PST, with the Roblox event link shared in the community announcement channel.",
+  "The community announcement channel marked the game as out on June 13, 2026, then noted that private servers were the only playable option at that launch moment.",
   "Recent social and video content clusters around five needs: working codes, beginner-to-endgame progression, secret methods, stock/event timing, and badges.",
   "The sequel loop adds day/night pressure, stealing, defense habits, guild rewards, and a fresh economy that players are still testing.",
   "Any stock, trading, or event note should be labeled as verified, reported, or unconfirmed because these topics expire quickly.",
@@ -149,10 +202,37 @@ export const stockSignals: StockSignal[] = [
     item: "Firefly and rare stock alerts",
     category: "Pets",
     status: "Reported",
-    lastSeen: "June 2026 community chatter",
+    lastSeen: "June 2026 community stock channels",
     sourceType: "Community stock signals",
     action: "Treat as an alert only; verify in-game before trading or spending.",
     note: "Short-lived stock reports expire too fast for a static page to call them live.",
+  },
+  {
+    item: "Dragon Breath prediction",
+    category: "Seeds",
+    status: "Reported",
+    lastSeen: "June 15, 2026 Discord prediction post",
+    sourceType: "Community stock prediction",
+    action: "Watch the listed prediction windows, but confirm in-game before spending.",
+    note: "Reported windows include June 15 13:20, June 16 18:55, and June 18 01:25; the channel warns predictions are not always accurate.",
+  },
+  {
+    item: "Cherry prediction",
+    category: "Seeds",
+    status: "Reported",
+    lastSeen: "June 15, 2026 Discord prediction post",
+    sourceType: "Community stock prediction",
+    action: "Use as a reminder to check the shop, not as guaranteed stock.",
+    note: "Reported windows include June 16 21:15 and June 16 00:35; one June 14 window was marked missed.",
+  },
+  {
+    item: "Super Sprinkler prediction",
+    category: "Gear",
+    status: "Reported",
+    lastSeen: "June 15, 2026 Discord prediction post",
+    sourceType: "Community stock prediction",
+    action: "Check the gear shop near the prediction window and avoid pre-trading from the alert alone.",
+    note: "Reported windows include June 14 05:35, June 14 08:20, and June 16 11:20.",
   },
   {
     item: "Trading values",
@@ -162,6 +242,34 @@ export const stockSignals: StockSignal[] = [
     sourceType: "Community value hubs",
     action: "Use value pages as a second opinion, not final pricing.",
     note: "Demand changes fast around new pets, Venom services, and event supply.",
+  },
+];
+
+export type StockPrediction = {
+  item: string;
+  category: "Seeds" | "Gear";
+  windows: string[];
+  note: string;
+};
+
+export const stockPredictions: StockPrediction[] = [
+  {
+    item: "Dragon Breath",
+    category: "Seeds",
+    windows: ["June 15, 13:20", "June 16, 18:55", "June 18, 01:25"],
+    note: "Community prediction only. Confirm in-game before spending or trading.",
+  },
+  {
+    item: "Cherry",
+    category: "Seeds",
+    windows: ["June 16, 21:15", "June 16, 00:35"],
+    note: "A June 14 prediction was marked missed, so keep the confidence low.",
+  },
+  {
+    item: "Super Sprinkler",
+    category: "Gear",
+    windows: ["June 14, 05:35", "June 14, 08:20", "June 16, 11:20"],
+    note: "Gear-stock alert, not guaranteed live availability.",
   },
 ];
 
