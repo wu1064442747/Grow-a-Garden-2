@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteUrl, stockPredictions, stockSignals } from "@/lib/site-data";
+import { PageVisual } from "@/app/page-visual";
+import {
+  discordInviteUrl,
+  pageVisualThemes,
+  siteUrl,
+  stockPredictions,
+  stockSignals,
+} from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Grow a Garden 2 Stock Tracker",
+  title: "Grow a Garden 2 Stock Tracker and GAG2 Stock Notifier",
   description:
-    "Grow a Garden 2 stock tracker hub for seeds, gear, pets, weather, Admin Abuse events, Firefly alerts, and community restock signals.",
+    "Grow a Garden 2 stock tracker and GAG2 stock notifier hub for seeds, gear, pets, weather, Admin Abuse events, Firefly alerts, and community restock signals.",
   alternates: {
     canonical: `${siteUrl}/stock-tracker`,
   },
@@ -33,25 +40,33 @@ export default function StockTrackerPage() {
           <p className="guide-meta">Community signals · Freshness labels required</p>
           <h1>Grow a Garden 2 Stock Tracker</h1>
           <p>
-            Track stock pressure from current player behavior: seed rotation,
-            rare item alerts, Admin Abuse uncertainty, trading values, and event
-            windows. Signals are labeled so reported data does not pretend to be
-            official live truth.
+            Track Grow a Garden 2 stock pressure and GAG2 stock notifier demand
+            from current player behavior: seed rotation, rare item alerts, Admin
+            Abuse uncertainty, trading values, and event windows. Every Grow a
+            Garden 2 stock signal is labeled so reported data does not pretend
+            to be official live truth.
           </p>
         </div>
-        <aside className="quick-card">
-          <h2>Tracker roadmap</h2>
-          <ul>
-            <li>Seed shop status</li>
-            <li>Gear and defense stock</li>
-            <li>Pet availability</li>
-            <li>Event and trading value signals</li>
-          </ul>
-        </aside>
+        <div className="hero-side">
+          <PageVisual
+            theme={pageVisualThemes.stock}
+            ctaHref={discordInviteUrl}
+            ctaLabel="Join notifier Discord"
+          />
+          <aside className="quick-card">
+            <h2>Tracker roadmap</h2>
+            <ul>
+              <li>Seed shop status</li>
+              <li>Gear and defense stock</li>
+              <li>Pet availability</li>
+              <li>Event and trading value signals</li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
       <section className="table-section" aria-labelledby="tracker-categories">
-        <h2 id="tracker-categories">Tracking categories</h2>
+        <h2 id="tracker-categories">Grow a Garden 2 stock categories</h2>
         <div className="tracker-list">
           {trackerRows.map(([title, description]) => (
             <div className="tracker-row" key={title}>
@@ -63,11 +78,12 @@ export default function StockTrackerPage() {
       </section>
 
       <section className="table-section" aria-labelledby="prediction-board">
-        <h2 id="prediction-board">Community prediction board</h2>
+        <h2 id="prediction-board">GAG2 stock notifier prediction board</h2>
         <p>
-          These windows came from the Discord stock prediction channel. The
-          channel itself warns that predictions are not always accurate, so use
-          them as check reminders rather than guaranteed live stock.
+          These Grow a Garden 2 stock windows came from the Discord stock
+          prediction channel. The channel itself warns that predictions are not
+          always accurate, so use this GAG2 stock notifier board as check
+          reminders rather than guaranteed live stock.
         </p>
         <div className="prediction-grid">
           {stockPredictions.map((prediction) => (
@@ -86,7 +102,7 @@ export default function StockTrackerPage() {
       </section>
 
       <section className="table-section" aria-labelledby="current-signals">
-        <h2 id="current-signals">Current stock signals</h2>
+        <h2 id="current-signals">Current Grow a Garden 2 stock signals</h2>
         <div className="tracker-list">
           {stockSignals.map((signal) => (
             <div className="tracker-row" key={signal.item}>
@@ -102,7 +118,7 @@ export default function StockTrackerPage() {
       </section>
 
       <section className="table-section" aria-labelledby="signal-rules">
-        <h2 id="signal-rules">Signal rules</h2>
+        <h2 id="signal-rules">GAG2 stock signal rules</h2>
         <div className="tracker-list">
           {[
             ["Verified", "Confirmed by current gameplay or multiple reliable current guides."],

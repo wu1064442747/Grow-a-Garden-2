@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageVisual } from "@/app/page-visual";
 import { StructuredData } from "@/app/structured-data";
 import {
   currentCodes,
+  discordInviteUrl,
   expiredCodes,
+  pageVisualThemes,
   siteUrl,
   watchedCodes,
 } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Grow a Garden 2 Codes",
+  title: "Grow a Garden 2 Codes and GAG2 Codes",
   description:
-    "Working Grow a Garden 2 codes, rewards, and latest checked status for seed rewards and launch bonuses.",
+    "Working Grow a Garden 2 codes and GAG2 codes, rewards, latest checked status, expired codes, watchlist codes, and redeem troubleshooting.",
   alternates: {
     canonical: `${siteUrl}/codes`,
   },
@@ -55,23 +58,31 @@ export default function CodesPage() {
           <p className="guide-meta">Updated June 14, 2026 · Daily check target</p>
           <h1>Grow a Garden 2 Codes</h1>
           <p>
-            Track working codes, watchlist codes, rewards, and the last checked
-            status. This page separates verified active codes from speculative
-            launch-code chatter and old codes from the pre-launch history.
+            Track Grow a Garden 2 codes and GAG2 codes with working codes,
+            watchlist codes, rewards, and the last checked status. This Grow a
+            Garden 2 codes page separates verified active codes from speculative
+            GAG2 launch-code chatter and old codes from the pre-launch history.
           </p>
         </div>
-        <aside className="quick-card">
-          <h2>How to use this page</h2>
-          <ul>
-            <li>Copy the code exactly as shown.</li>
-            <li>Redeem it in the in-game codes area.</li>
-            <li>Check back after updates and events.</li>
-          </ul>
-        </aside>
+        <div className="hero-side">
+          <PageVisual
+            theme={pageVisualThemes.codes}
+            ctaHref={discordInviteUrl}
+            ctaLabel="Join code alerts"
+          />
+          <aside className="quick-card">
+            <h2>How to use this page</h2>
+            <ul>
+              <li>Copy the code exactly as shown.</li>
+              <li>Redeem it in the in-game codes area.</li>
+              <li>Check back after updates and events.</li>
+            </ul>
+          </aside>
+        </div>
       </section>
 
       <section className="table-section" aria-labelledby="working-codes">
-        <h2 id="working-codes">Working codes</h2>
+        <h2 id="working-codes">Working Grow a Garden 2 codes</h2>
         <div className="code-table" role="table" aria-label="Working codes">
           <div className="code-row code-head" role="row">
             <span role="columnheader">Code</span>
@@ -93,10 +104,11 @@ export default function CodesPage() {
       </section>
 
       <section className="table-section" aria-labelledby="watchlist-codes">
-        <h2 id="watchlist-codes">Watchlist codes</h2>
+        <h2 id="watchlist-codes">GAG2 codes watchlist</h2>
         <p>
-          These are not listed as working. They are kept here only because
-          players search for them after launch.
+          These GAG2 codes are not listed as working Grow a Garden 2 codes.
+          They are kept here only because players search for GAG2 codes after
+          launch and need a clear warning before trying them.
         </p>
         <div className="tracker-list">
           {watchedCodes.map((code) => (
@@ -111,11 +123,12 @@ export default function CodesPage() {
       </section>
 
       <section className="table-section" aria-labelledby="expired-codes">
-        <h2 id="expired-codes">Expired and historical codes</h2>
+        <h2 id="expired-codes">Expired Grow a Garden 2 codes</h2>
         <p>
-          These appeared in the community codes history before TEAMGREENBEAN was
-          listed as the full active set. Keep them here for players checking old
-          videos, not as redeem recommendations.
+          These expired Grow a Garden 2 codes appeared in community codes
+          history before TEAMGREENBEAN was listed as the full active GAG2 codes
+          set. Keep them here for players checking old videos, not as redeem
+          recommendations.
         </p>
         <div className="code-table" role="table" aria-label="Expired codes">
           <div className="code-row code-head" role="row">
@@ -140,7 +153,7 @@ export default function CodesPage() {
       </section>
 
       <section className="table-section" aria-labelledby="redeem-help">
-        <h2 id="redeem-help">If a code does not work</h2>
+        <h2 id="redeem-help">If Grow a Garden 2 codes do not work</h2>
         <div className="tracker-list">
           {[
             "Copy the code exactly, with no spaces before or after it.",

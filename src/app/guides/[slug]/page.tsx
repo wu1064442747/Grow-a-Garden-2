@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PageVisual } from "@/app/page-visual";
 import { StructuredData } from "@/app/structured-data";
-import { getGuideBySlug, guides, siteName, siteUrl } from "@/lib/site-data";
+import {
+  discordInviteUrl,
+  getGuideBySlug,
+  getGuideVisualTheme,
+  guides,
+  siteName,
+  siteUrl,
+} from "@/lib/site-data";
 
 type GuidePageProps = {
   params: Promise<{
@@ -55,6 +63,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const relatedGuides = guides
     .filter((relatedGuide) => relatedGuide.slug !== guide.slug)
     .slice(0, 3);
+  const visualTheme = getGuideVisualTheme(guide);
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -86,15 +95,27 @@ export default async function GuidePage({ params }: GuidePageProps) {
             </p>
             <h1>{guide.title}</h1>
             <p>{guide.description}</p>
+            <div className="guide-keyword-strip" aria-label="Guide keyword focus">
+              <span>{guide.title}</span>
+              <span>GAG2 {guide.category}</span>
+              <span>Grow a Garden 2 {guide.category}</span>
+            </div>
           </div>
-          <aside className="quick-card" aria-label="Key takeaways">
-            <h2>Quick Takeaways</h2>
-            <ul>
-              {guide.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
-            </ul>
-          </aside>
+          <div className="hero-side">
+            <PageVisual
+              theme={visualTheme}
+              ctaHref={guide.slug.includes("stock") || guide.slug.includes("events") ? discordInviteUrl : undefined}
+              ctaLabel={guide.slug.includes("stock") || guide.slug.includes("events") ? "Join alerts" : undefined}
+            />
+            <aside className="quick-card" aria-label="Key takeaways">
+              <h2>Quick Takeaways</h2>
+              <ul>
+                {guide.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </aside>
+          </div>
         </header>
 
         <div className="guide-body">
@@ -118,6 +139,10 @@ export default async function GuidePage({ params }: GuidePageProps) {
               href={`/guides/${relatedGuide.slug}`}
               key={relatedGuide.slug}
             >
+              <span
+                className={`guide-card-visual ${getGuideVisualTheme(relatedGuide).className}`}
+                aria-hidden="true"
+              />
               <span>{relatedGuide.category}</span>
               <h3>{relatedGuide.title}</h3>
               <p>{relatedGuide.description}</p>

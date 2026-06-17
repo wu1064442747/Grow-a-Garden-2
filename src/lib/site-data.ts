@@ -2,6 +2,41 @@ export const siteUrl = "https://growagarden-2.online";
 
 export const siteName = "Grow a Garden 2 Guide";
 
+export const discordInviteUrl = "https://discord.gg/HmPjaSEd";
+
+export const pageKeywordFocus = [
+  {
+    page: "Homepage",
+    keyword: "GAG2 / Grow a Garden 2",
+    href: "/",
+    note: "These spelling variants share the same homepage intent.",
+  },
+  {
+    page: "Codes",
+    keyword: "Grow a Garden 2 codes / GAG2 codes",
+    href: "/codes",
+    note: "Players want current rewards first, then expired and watched code history.",
+  },
+  {
+    page: "Stock Tracker",
+    keyword: "Grow a Garden 2 stock / GAG2 stock notifier",
+    href: "/stock-tracker",
+    note: "Notifier searches need labels, not unsupported live-stock claims.",
+  },
+  {
+    page: "Weather",
+    keyword: "Grow a Garden 2 weather notifier",
+    href: "/guides/weather-events",
+    note: "Weather intent belongs with events, mutation timing, and freshness checks.",
+  },
+  {
+    page: "Discord",
+    keyword: "Grow a Garden 2 Discord",
+    href: discordInviteUrl,
+    note: "Community searches should land on alerts while reports stay labeled.",
+  },
+];
+
 export type CodeStatus = "Working" | "Expired" | "Watching";
 
 export type GameCode = {
@@ -135,6 +170,121 @@ export const searchDemand = [
     pageType: "Tables and tier explanations",
   },
 ];
+
+export type KeywordIntent = {
+  keyword: string;
+  intent: string;
+  target: string;
+  href: string;
+  action: string;
+};
+
+export const keywordIntentMap: KeywordIntent[] = [
+  {
+    keyword: "gag 2 / gag2 / grow a garden 2",
+    intent: "The user is navigating to the sequel hub and wants a fast answer for what to do next.",
+    target: "Homepage and guide index",
+    href: "/guides",
+    action: "Use the homepage for these spelling variants, then send players to codes, stock, weather, Discord, and beginner guides.",
+  },
+  {
+    keyword: "grow a garden 2 codes / gag 2 codes",
+    intent: "The user wants a working redeem code, stale-code filtering, and a quick fix if redemption fails.",
+    target: "Codes page",
+    href: "/codes",
+    action: "Show the current active code first, then watchlist and expired history with checked dates.",
+  },
+  {
+    keyword: "gag 2 stock / grow a garden 2 stock",
+    intent: "The user wants seed, gear, pet, and event availability before spending or trading.",
+    target: "Stock tracker",
+    href: "/stock-tracker",
+    action: "Use status labels so reported stock and predictions are not presented as guaranteed live data.",
+  },
+  {
+    keyword: "gag 2 stock notifier / grow a garden 2 notifier",
+    intent: "The user wants alerts, not a static article, and expects Discord-style community signals.",
+    target: "Discord and stock tracker",
+    href: "/stock-tracker",
+    action: "Make the Discord CTA visible and explain that community alerts still need in-game confirmation.",
+  },
+  {
+    keyword: "grow a garden 2 weather notifier",
+    intent: "The user wants weather/event reminders because mutation windows change crop value quickly.",
+    target: "Weather guide and stock tracker",
+    href: "/guides/weather-events",
+    action: "Point them to weather rules plus the stock/event signal page for freshness checks.",
+  },
+  {
+    keyword: "grow a garden 2 discord",
+    intent: "The user wants the community server for codes, stock alerts, reports, and update chatter.",
+    target: "Community entry",
+    href: discordInviteUrl,
+    action: "Use a clear join button, then explain which pages summarize verified or labeled community signals.",
+  },
+  {
+    keyword: "steam achievement manager",
+    intent: "This is unrelated software intent, not a Grow a Garden 2 player query.",
+    target: "No page target",
+    href: "/guides",
+    action: "Do not create off-topic content; keep site topical authority around Grow a Garden 2.",
+  },
+];
+
+export const pageVisualThemes = {
+  home: {
+    className: "visual-home",
+    eyebrow: "Search Hub",
+    title: "Guide hub",
+    caption: "Route sequel searches into codes, stock, weather, and Discord pages.",
+  },
+  codes: {
+    className: "visual-codes",
+    eyebrow: "GAG2 Codes",
+    title: "Grow a Garden 2 codes",
+    caption: "Working Grow a Garden 2 codes first, stale GAG2 codes below them.",
+  },
+  stock: {
+    className: "visual-stock",
+    eyebrow: "GAG2 Stock Notifier",
+    title: "Grow a Garden 2 stock",
+    caption: "GAG2 stock notifier signals for seeds, gear, pets, weather, and reports.",
+  },
+  guides: {
+    className: "visual-guides",
+    eyebrow: "GAG2 Guide Map",
+    title: "Grow a Garden 2 guides",
+    caption: "GAG2 guides for beginner, midgame, weather, stock, and completion tasks.",
+  },
+  community: {
+    className: "visual-community",
+    eyebrow: "Grow a Garden 2 Discord",
+    title: "GAG2 community demand",
+    caption: "Grow a Garden 2 Discord alerts turned into labeled codes, stock, and weather pages.",
+  },
+  search: {
+    className: "visual-search",
+    eyebrow: "GAG2 Intent Search",
+    title: "Find the right page",
+    caption: "Match GAG2, Grow a Garden 2, stock notifier, codes, Discord, or weather queries.",
+  },
+} as const;
+
+export function getGuideVisualTheme(guide: Guide) {
+  if (guide.slug === "weather-events" || guide.slug === "admin-abuse-stock-events") {
+    return pageVisualThemes.stock;
+  }
+
+  if (guide.slug === "badges-achievements" || guide.slug === "known-issues") {
+    return pageVisualThemes.community;
+  }
+
+  if (guide.slug === "beginner-guide" || guide.slug === "stealing-guide" || guide.slug === "guild-guide") {
+    return pageVisualThemes.guides;
+  }
+
+  return pageVisualThemes.home;
+}
 
 export const playerQuestionClusters = [
   {
@@ -296,7 +446,7 @@ export const guides: Guide[] = [
     slug: "beginner-guide",
     title: "Grow a Garden 2 Beginner Guide",
     description:
-      "A practical easy, mid, and endgame route for seeds, Sheckles, expansion, night stealing, defense, and guild rewards.",
+      "A practical Grow a Garden 2 beginner guide and GAG2 route for seeds, Sheckles, expansion, night stealing, defense, and guild rewards.",
     updatedAt: "June 14, 2026",
     readingTime: "8 min",
     category: "Starter Route",
@@ -313,6 +463,7 @@ export const guides: Guide[] = [
         heading: "Easy game route",
         body: [
           "Start with cheap, fast crops and reinvest every harvest. New players lose time when they save too early for one expensive plant instead of building a garden that pays back every few minutes.",
+          "Use this Grow a Garden 2 beginner guide as the GAG2 starting route: learn the loop, then branch into stock, weather, pets, and guild tasks.",
           "Use the first sessions to learn the seed shop rhythm, basic crop value, and where players can approach your garden at night. A stable loop matters more than one lucky purchase.",
         ],
       },
@@ -336,7 +487,7 @@ export const guides: Guide[] = [
     slug: "seeds-tier-list",
     title: "Best Seeds and Plants Tier List",
     description:
-      "A decision-first seed guide for early cash, midgame repeat income, late-game value, and mutation/event upside.",
+      "A Grow a Garden 2 seeds tier list for early cash, midgame repeat income, late-game value, and mutation/event upside.",
     updatedAt: "June 14, 2026",
     readingTime: "7 min",
     category: "Seeds",
@@ -376,7 +527,7 @@ export const guides: Guide[] = [
     slug: "weather-events",
     title: "Weather Events and Mutations Guide",
     description:
-      "What to do during Rain, Lightning, Rainbow, Snowfall, Starfall, and seed events without wasting high-value crops.",
+      "A Grow a Garden 2 weather events and weather notifier guide for Rain, Lightning, Rainbow, Snowfall, Starfall, and mutation windows.",
     updatedAt: "June 14, 2026",
     readingTime: "6 min",
     category: "Mutations",
@@ -393,6 +544,7 @@ export const guides: Guide[] = [
         heading: "Why weather matters",
         body: [
           "Weather events change the value of your current garden. If you play on autopilot, you can sell too early and miss the best mutation window.",
+          "Grow a Garden 2 weather notifier searches usually mean the player wants a reminder before rare GAG2 weather events affect crop value.",
           "Use regular harvests for income, but keep enough growing space ready for event-driven upside.",
         ],
       },
@@ -409,7 +561,7 @@ export const guides: Guide[] = [
     slug: "stealing-guide",
     title: "Night Stealing and Defense Guide",
     description:
-      "How night stealing changes your garden layout, what to protect first, and how to reduce avoidable losses.",
+      "A Grow a Garden 2 stealing guide for night defense, garden layout, what to protect first, and how to reduce avoidable losses.",
     updatedAt: "June 14, 2026",
     readingTime: "6 min",
     category: "Defense",
@@ -442,7 +594,7 @@ export const guides: Guide[] = [
     slug: "guild-guide",
     title: "Guild Guide and Weekly Rewards",
     description:
-      "How guilds fit into progression, weekly rewards, leaderboards, group play, and daily route decisions.",
+      "A Grow a Garden 2 guild guide for weekly rewards, leaderboards, group play, and daily GAG2 route decisions.",
     updatedAt: "June 14, 2026",
     readingTime: "5 min",
     category: "Guilds",
@@ -474,7 +626,7 @@ export const guides: Guide[] = [
     slug: "pets-guide",
     title: "Pets Guide and Pet Tier List",
     description:
-      "A practical framework for pet utility, acquisition pressure, beginner value, and trade demand.",
+      "A Grow a Garden 2 pets guide and GAG2 pet tier list framework for utility, beginner value, and trade demand.",
     updatedAt: "June 14, 2026",
     readingTime: "6 min",
     category: "Pets",
@@ -506,7 +658,7 @@ export const guides: Guide[] = [
     slug: "badges-achievements",
     title: "Badges and Achievements Guide",
     description:
-      "A completion checklist for Grow a Garden 2 badges, what to verify first, and how to avoid wasting time on unclear achievements.",
+      "A Grow a Garden 2 badges and achievements checklist for completion, verified requirements, and unclear GAG2 achievements.",
     updatedAt: "June 14, 2026",
     readingTime: "5 min",
     category: "Badges",
@@ -539,7 +691,7 @@ export const guides: Guide[] = [
     slug: "admin-abuse-stock-events",
     title: "Admin Abuse, Stock, and Event Timing Guide",
     description:
-      "How to interpret Admin Abuse questions, stock alerts, Firefly reports, and event timing without treating rumors as live truth.",
+      "A Grow a Garden 2 stock and event timing guide for Admin Abuse questions, stock alerts, Firefly reports, and GAG2 event rumors.",
     updatedAt: "June 14, 2026",
     readingTime: "5 min",
     category: "Events",
@@ -556,6 +708,7 @@ export const guides: Guide[] = [
         heading: "What players need",
         body: [
           "Players want to know what is available right now, whether they should wait, and whether an event is real. A good page should answer those questions with status labels, not vague hype.",
+          "Grow a Garden 2 stock notifier and GAG2 stock searches belong here when players need event timing, Firefly reports, or rare shop alerts.",
           "For static pages, use reported signals as alerts. For live pages, show last seen time and source type.",
         ],
       },
@@ -572,7 +725,7 @@ export const guides: Guide[] = [
     slug: "venom-pets-trading",
     title: "Venom, Pets, and Trading Demand Guide",
     description:
-      "A practical guide for pet demand, Venom questions, gifting errors, and trade-risk checks.",
+      "A Grow a Garden 2 trading guide for pet demand, Venom questions, gifting errors, and GAG2 trade-risk checks.",
     updatedAt: "June 14, 2026",
     readingTime: "6 min",
     category: "Trading",
@@ -605,7 +758,7 @@ export const guides: Guide[] = [
     slug: "known-issues",
     title: "Known Issues and Player Questions",
     description:
-      "Current community-reported issues: gift errors, stock confusion, update uncertainty, and launch-window bugs.",
+      "Current Grow a Garden 2 known issues and GAG2 player questions: gift errors, stock confusion, update uncertainty, and launch bugs.",
     updatedAt: "June 14, 2026",
     readingTime: "5 min",
     category: "Issues",
@@ -640,28 +793,53 @@ export const toolCards = [
   {
     title: "Codes Tracker",
     href: "/codes",
-    description: "Working code first, watchlist codes separated, and redeem troubleshooting.",
+    description: "Grow a Garden 2 codes and GAG2 codes: working code first, watchlist codes separated, and redeem troubleshooting.",
     status: "Verified",
+    keywords: ["codes", "gag2 codes", "gag 2 codes", "grow a garden 2 codes", "redeem"],
   },
   {
     title: "Stock Tracker",
     href: "/stock-tracker",
-    description: "Seeds, pets, events, trading signals, and freshness labels.",
+    description: "Grow a Garden 2 stock, GAG2 stock notifier signals, pets, events, trading, and freshness labels.",
     status: "Signals",
+    keywords: ["stock", "notifier", "stock notifier", "gag2 stock", "gag 2 stock", "gag2 stock notifier", "gag stock notifier", "grow a garden 2 stock notifier"],
   },
   {
     title: "Guide Directory",
     href: "/guides",
-    description: "All guides grouped by real search intent, not fake category counts.",
+    description: "Grow a Garden 2 guides and GAG2 guides grouped by real search intent, not fake category counts.",
     status: "Index",
+    keywords: ["gag 2", "gag2", "grow a garden 2", "gag2 guides", "grow a garden 2 guides", "guides"],
   },
   {
     title: "Community Questions",
     href: "/community-questions",
-    description: "What the last 30 days of player demand says to build next.",
+    description: "Grow a Garden 2 Discord and GAG2 community questions from recent player demand.",
     status: "Research",
+    keywords: ["discord", "grow a garden 2 discord", "gag2 discord", "community", "questions", "updates"],
   },
 ];
+
+export function searchTools(query: string) {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return toolCards;
+  }
+
+  return toolCards.filter((tool) => {
+    const searchableText = [
+      tool.title,
+      tool.description,
+      tool.status,
+      ...tool.keywords,
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return searchableText.includes(normalizedQuery);
+  });
+}
 
 export const guideCategories = [
   {

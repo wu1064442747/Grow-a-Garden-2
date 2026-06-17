@@ -8,18 +8,18 @@ import { siteName, siteUrl } from "@/lib/site-data";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} - Codes, Seeds, Weather, Stealing and Guilds`,
+    default: `${siteName} - GAG2 Codes, Stock, Weather and Guides`,
     template: `%s | ${siteName}`,
   },
   description:
-    "Independent Grow a Garden 2 guide site for codes, beginner routes, seeds, weather events, stealing defense, guilds, pets, and stock tools.",
+    "Independent Grow a Garden 2 and GAG2 guide site for codes, stock notifier signals, weather events, beginner routes, seeds, stealing defense, guilds, pets, and tools.",
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
     title: siteName,
     description:
-      "Codes, beginner routes, seeds, weather events, stealing defense, guilds, pets, and stock tools for Grow a Garden 2.",
+      "GAG2 and Grow a Garden 2 codes, stock notifier signals, weather events, beginner routes, seeds, stealing defense, guilds, pets, and tools.",
     url: siteUrl,
     siteName,
     type: "website",

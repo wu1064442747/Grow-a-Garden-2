@@ -1,9 +1,14 @@
 import Link from "next/link";
+import { PageVisual } from "@/app/page-visual";
 import { StructuredData } from "@/app/structured-data";
 import {
   currentCodes,
+  discordInviteUrl,
   guideCategories,
   guides,
+  keywordIntentMap,
+  pageKeywordFocus,
+  pageVisualThemes,
   searchDemand,
   siteName,
   siteUrl,
@@ -11,10 +16,10 @@ import {
 } from "@/lib/site-data";
 
 const heroLinks = [
-  ["📚", "All Guides", "Browse everything", "/guides"],
-  ["🎁", "Current Codes", "Active codes list", "/codes"],
-  ["🔧", "Stock Signals", "Freshness labels", "/stock-tracker"],
-  ["🌱", "New to Game?", "Beginner guide", "/guides/beginner-guide"],
+  ["All Guides", "Browse everything", "/guides"],
+  ["Current Codes", "Active codes list", "/codes"],
+  ["Stock Signals", "Freshness labels", "/stock-tracker"],
+  ["Join Discord", "Alerts and reports", discordInviteUrl],
 ];
 
 export default function Home() {
@@ -49,8 +54,9 @@ export default function Home() {
           <div className="hero-copy">
             <h1>Grow a Garden 2 Guide</h1>
             <p>
-              Working codes, beginner routes, stock signals, badges, seeds,
-              pets, stealing defense, guilds and trading safety.
+              All common sequel searches point here: working codes, stock
+              notifier signals, weather events, beginner routes, Discord alerts,
+              badges, seeds, pets, stealing defense, guilds and trading safety.
             </p>
             <form className="hero-search" action="/search">
               <label className="sr-only" htmlFor="hero-search">
@@ -66,9 +72,9 @@ export default function Home() {
             </form>
           </div>
           <div className="hero-quick-links">
-            {heroLinks.map(([icon, title, description, href]) => (
+            {heroLinks.map(([title, description, href], index) => (
               <Link className="hero-quick-card" href={href} key={title}>
-                <span aria-hidden="true">{icon}</span>
+                <span className={`quick-icon quick-icon-${index}`} aria-hidden="true" />
                 <strong>{title}</strong>
                 <small>{description}</small>
               </Link>
@@ -143,6 +149,50 @@ export default function Home() {
               <span className={`thumb thumb-${index}`} aria-hidden="true" />
               <strong>{demand.title}</strong>
               <small>{demand.pageType}</small>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="page-shell intent-section" aria-labelledby="keyword-intent">
+        <div className="intent-heading">
+          <div>
+            <p className="guide-meta">Keyword intent from the attached search list</p>
+            <h2 id="keyword-intent">What these searches really want</h2>
+          </div>
+          <PageVisual
+            theme={pageVisualThemes.home}
+            ctaHref={discordInviteUrl}
+            ctaLabel="Join Discord"
+          />
+        </div>
+        <div className="intent-grid">
+          {keywordIntentMap.map((intent) => (
+            <Link
+              className={intent.target === "No page target" ? "intent-card muted-intent" : "intent-card"}
+              href={intent.href}
+              key={intent.keyword}
+            >
+              <span>{intent.keyword}</span>
+              <h3>{intent.intent}</h3>
+              <p>{intent.action}</p>
+              <small>{intent.target}</small>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="page-shell keyword-focus-panel" aria-labelledby="homepage-keywords">
+        <div className="mini-section-title">
+          <h2 id="homepage-keywords">Keyword focus</h2>
+          <Link href="/search?q=gag2">Search hub →</Link>
+        </div>
+        <div className="keyword-focus-grid">
+          {pageKeywordFocus.map((focus) => (
+            <Link className="keyword-focus-card" href={focus.href} key={focus.keyword}>
+              <span>{focus.page}</span>
+              <strong>{focus.keyword}</strong>
+              <p>{focus.note}</p>
             </Link>
           ))}
         </div>
