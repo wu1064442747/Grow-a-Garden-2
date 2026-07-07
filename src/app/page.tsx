@@ -1,26 +1,24 @@
 import Link from "next/link";
+import { CopyCodeButton } from "@/app/copy-code-button";
 import { PageVisual } from "@/app/page-visual";
 import { StructuredData } from "@/app/structured-data";
 import {
   currentCodes,
   discordInviteUrl,
+  gameLaunch,
   guideCategories,
   guides,
+  homepageToolEntries,
   keywordIntentMap,
   pageKeywordFocus,
   pageVisualThemes,
   searchDemand,
+  seedRecommendations,
   siteName,
   siteUrl,
-  toolCards,
+  stockSignals,
+  weatherQuickChecks,
 } from "@/lib/site-data";
-
-const heroLinks = [
-  ["All Guides", "Browse everything", "/guides"],
-  ["Current Codes", "Active codes list", "/codes"],
-  ["Stock Signals", "Freshness labels", "/stock-tracker"],
-  ["Join Discord", "Alerts and reports", discordInviteUrl],
-];
 
 export default function Home() {
   const latestGuides = guides.slice(2, 7);
@@ -49,85 +47,104 @@ export default function Home() {
       <StructuredData data={webSite} />
       <StructuredData data={guideItemList} />
 
-      <section className="hero-section home-hero">
-        <div className="home-hero-content">
-          <div className="hero-copy">
-            <h1>Grow a Garden 2 Guide</h1>
-            <p>
-              All common sequel searches point here: working codes, stock
-              notifier signals, weather events, beginner routes, Discord alerts,
-              badges, seeds, pets, stealing defense, guilds and trading safety.
-            </p>
-            <form className="hero-search" action="/search">
-              <label className="sr-only" htmlFor="hero-search">
-                Search any guide or tool
-              </label>
-              <input
-                id="hero-search"
-                name="q"
-                placeholder="Search any guide or tool..."
-                type="search"
-              />
-              <button type="submit">Search</button>
-            </form>
-          </div>
-          <div className="hero-quick-links">
-            {heroLinks.map(([title, description, href], index) => (
-              <Link className="hero-quick-card" href={href} key={title}>
-                <span className={`quick-icon quick-icon-${index}`} aria-hidden="true" />
-                <strong>{title}</strong>
-                <small>{description}</small>
+      <section className="launch-hero" id="play">
+        <div className="page-shell launch-hero-grid">
+          <article className="game-launch-card" aria-labelledby="game-launch-title">
+            <div className="game-launch-visual" aria-hidden="true">
+              <span className="game-sky" />
+              <span className="game-plot game-plot-a" />
+              <span className="game-plot game-plot-b" />
+              <span className="game-plot game-plot-c" />
+            </div>
+            <div className="game-launch-copy">
+              <p className="guide-meta">Reviewed {gameLaunch.lastReviewed}</p>
+              <h1 id="game-launch-title">{gameLaunch.title}</h1>
+              <p>{gameLaunch.description}</p>
+              <div className="launch-actions">
+                <a className="button primary" href={gameLaunch.playUrl} rel="noopener noreferrer" target="_blank">
+                  {gameLaunch.playLabel}
+                </a>
+                <a className="button secondary" href={discordInviteUrl} rel="noopener noreferrer" target="_blank">
+                  Join Discord
+                </a>
+              </div>
+              <small>{gameLaunch.disclaimer}</small>
+            </div>
+          </article>
+
+          <aside className="native-tool-stack" aria-label="Grow a Garden 2 quick tools">
+            <section className="native-tool-card seed-finder-card" aria-labelledby="seed-finder-title">
+              <span className="tool-badge">Seed Finder</span>
+              <h2 id="seed-finder-title">Find the right seed to plant next</h2>
+              <div className="seed-chip-grid">
+                {seedRecommendations.slice(0, 4).map((seed) => (
+                  <Link href="/guides/seeds-tier-list" key={seed.name}>
+                    <strong>{seed.name}</strong>
+                    <small>
+                      {seed.tier} tier · {seed.rarity}
+                    </small>
+                  </Link>
+                ))}
+              </div>
+              <Link className="tool-card-link" href="/guides/seeds-tier-list">
+                Open seed tier list
               </Link>
-            ))}
-          </div>
+            </section>
+
+            <section className="native-tool-card quick-check-card" aria-labelledby="quick-check-title">
+              <span className="tool-badge">Stock / Weather</span>
+              <h2 id="quick-check-title">Check signals before spending</h2>
+              <div className="quick-signal-list">
+                {stockSignals.slice(0, 2).map((signal) => (
+                  <Link href="/stock-tracker" key={signal.item}>
+                    <strong>{signal.item}</strong>
+                    <small>
+                      {signal.category} · {signal.status}
+                    </small>
+                  </Link>
+                ))}
+                {weatherQuickChecks.slice(0, 1).map((check) => (
+                  <Link href="/guides/weather-events" key={check.event}>
+                    <strong>{check.event}</strong>
+                    <small>Weather · {check.status}</small>
+                  </Link>
+                ))}
+              </div>
+              <Link className="tool-card-link" href="/stock-tracker">
+                Open stock and weather checks
+              </Link>
+            </section>
+          </aside>
         </div>
       </section>
 
-      <section className="page-shell dashboard-row" aria-label="Codes and tools">
-        <div className="panel codes-panel">
-          <div className="panel-title green-title">
-            <h2>🎁 Current Codes</h2>
-            <Link href="/codes">View All Codes →</Link>
-          </div>
-          <p className="checked-line">
-            <span aria-hidden="true" /> Last checked: {currentCodes[0]?.checkedAt}
+      <section className="page-shell current-code-strip" aria-labelledby="current-code-title">
+        <div>
+          <span className="tool-badge">Current code</span>
+          <h2 id="current-code-title">{currentCodes[0]?.code}</h2>
+          <p>
+            {currentCodes[0]?.reward} · Checked {currentCodes[0]?.checkedAt}
           </p>
-          <div className="code-list">
-            {currentCodes.map((code) => (
-              <div className="home-code-row" key={code.code}>
-                <div>
-                  <strong>{code.code}</strong>
-                  <em>{code.status}</em>
-                  <p>Rewards: {code.reward}</p>
-                </div>
-                <button type="button">Copy</button>
-              </div>
-            ))}
-          </div>
-          <Link className="full-width-button" href="/codes">
-            See All Active Codes →
-          </Link>
         </div>
+        <div className="current-code-actions">
+          {currentCodes[0] ? <CopyCodeButton code={currentCodes[0].code} /> : null}
+          <Link className="button secondary" href="/codes">View all codes</Link>
+        </div>
+      </section>
 
-        <div className="panel tools-panel">
-          <div className="panel-title blue-title">
-            <h2>🔧 Live Tools Preview</h2>
-            <Link href="/stock-tracker">All Tools →</Link>
-          </div>
-          <div className="tool-preview-grid">
-            {toolCards.map((tool, index) => (
-              <Link className="tool-preview-card" href={tool.href} key={tool.title}>
-                <span className="tool-emoji" aria-hidden="true">
-                  {["🧺", "🥕", "🌦️", "🌱"][index] ?? "🔧"}
-                </span>
-                <div>
-                  <h3>{tool.title}</h3>
-                  <p>{tool.description}</p>
-                  <strong>Open Tool</strong>
-                </div>
-              </Link>
-            ))}
-          </div>
+      <section className="page-shell tool-entry-grid" aria-labelledby="homepage-tools">
+        <div className="mini-section-title">
+          <h2 id="homepage-tools">Grow a Garden 2 tools</h2>
+          <Link href="/guides">Browse all guides</Link>
+        </div>
+        <div className="tool-entry-cards">
+          {homepageToolEntries.map((tool) => (
+            <Link className="tool-entry-card" href={tool.href} key={tool.title}>
+              <span className="tool-badge">{tool.statusLabel}</span>
+              <h3>{tool.title}</h3>
+              <p>{tool.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
