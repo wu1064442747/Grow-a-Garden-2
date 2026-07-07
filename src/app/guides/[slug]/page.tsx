@@ -8,6 +8,7 @@ import {
   getGuideBySlug,
   getGuideVisualTheme,
   guides,
+  seedRecommendations,
   siteName,
   siteUrl,
 } from "@/lib/site-data";
@@ -17,6 +18,8 @@ type GuidePageProps = {
     slug: string;
   }>;
 };
+
+const seedTiers = ["S", "A", "B", "Starter"] as const;
 
 export function generateStaticParams() {
   return guides.map((guide) => ({
@@ -128,6 +131,42 @@ export default async function GuidePage({ params }: GuidePageProps) {
             </section>
           ))}
         </div>
+        {guide.slug === "seeds-tier-list" ? (
+          <section className="seed-tool-section" aria-labelledby="seed-tool-title">
+            <div className="section-heading">
+              <h2 id="seed-tool-title">Seed tier quick tool</h2>
+              <Link className="button secondary" href="/stock-tracker">
+                Check stock signals
+              </Link>
+            </div>
+            <div className="seed-tier-lanes">
+              {seedTiers.map((tier) => {
+                const tierSeeds = seedRecommendations.filter((seed) => seed.tier === tier);
+
+                return (
+                  <div className="seed-tier-lane" key={tier}>
+                    <div className="seed-tier-label">
+                      <strong>{tier}</strong>
+                      <span>{tier === "Starter" ? "Starter picks" : `${tier} tier`}</span>
+                    </div>
+                    <div className="seed-tier-items">
+                      {tierSeeds.map((seed) => (
+                        <article className="seed-tier-item" key={seed.name}>
+                          <span className="guide-meta">{seed.confidence}</span>
+                          <h3>{seed.name}</h3>
+                          <p>{seed.note}</p>
+                          <small>
+                            {seed.rarity} · {seed.source} · {seed.useCase}
+                          </small>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        ) : null}
       </article>
 
       <section className="related-section" aria-labelledby="related-guides">

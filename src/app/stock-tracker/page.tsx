@@ -7,6 +7,7 @@ import {
   siteUrl,
   stockPredictions,
   stockSignals,
+  weatherQuickChecks,
 } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -65,6 +66,33 @@ export default function StockTrackerPage() {
         </div>
       </section>
 
+      <section className="table-section" aria-labelledby="stock-weather-quick-check">
+        <h2 id="stock-weather-quick-check">Stock / Weather Quick Check</h2>
+        <p>
+          Use these signals as reminders that still need in-game confirmation
+          before spending, trading, or changing crop plans.
+        </p>
+        <div className="quick-check-grid">
+          {stockSignals.slice(0, 4).map((signal) => (
+            <div className="tracker-row quick-check-item" key={signal.item}>
+              <span className="guide-meta">
+                {signal.category} · {signal.status} · {signal.lastSeen}
+              </span>
+              <h3>{signal.item}</h3>
+              <p>{signal.action}</p>
+              <small>{signal.sourceType}: {signal.note}</small>
+            </div>
+          ))}
+          {weatherQuickChecks.map((check) => (
+            <div className="tracker-row quick-check-item" key={check.event}>
+              <span className="guide-meta">Weather · {check.status}</span>
+              <h3>{check.event}</h3>
+              <p>{check.action}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="table-section" aria-labelledby="tracker-categories">
         <h2 id="tracker-categories">Grow a Garden 2 stock categories</h2>
         <div className="tracker-list">
@@ -88,7 +116,7 @@ export default function StockTrackerPage() {
         <div className="prediction-grid">
           {stockPredictions.map((prediction) => (
             <div className="tracker-row prediction-card" key={prediction.item}>
-              <span className="guide-meta">{prediction.category} · Reported</span>
+              <span className="guide-meta">{prediction.category} · {prediction.status}</span>
               <h3>{prediction.item}</h3>
               <ul>
                 {prediction.windows.map((window) => (
