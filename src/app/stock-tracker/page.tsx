@@ -27,6 +27,10 @@ const trackerRows = [
   ["Trading", "Value chatter with confidence labels instead of fixed prices."],
 ];
 
+const stockWatchSignals = stockSignals.filter(
+  (signal) => signal.sourceType !== "Community stock prediction",
+);
+
 export default function StockTrackerPage() {
   return (
     <main className="page-shell">
@@ -129,10 +133,10 @@ export default function StockTrackerPage() {
         </div>
       </section>
 
-      <section className="table-section" aria-labelledby="current-signals">
-        <h2 id="current-signals">Current Grow a Garden 2 stock signals</h2>
+      <section className="table-section" aria-labelledby="watch-signals">
+        <h2 id="watch-signals">Grow a Garden 2 stock and weather watch signals</h2>
         <div className="tracker-list">
-          {stockSignals.map((signal) => (
+          {stockWatchSignals.map((signal) => (
             <div className="tracker-row" key={signal.item}>
               <span className="guide-meta">
                 {signal.category} · {signal.status} · {signal.lastSeen}
