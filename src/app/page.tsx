@@ -22,6 +22,7 @@ import {
 
 export default function Home() {
   const latestGuides = guides.slice(2, 7);
+  const currentCode = currentCodes[0];
   const guideItemList = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -118,19 +119,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="page-shell current-code-strip" aria-labelledby="current-code-title">
-        <div>
-          <span className="tool-badge">Current code</span>
-          <h2 id="current-code-title">{currentCodes[0]?.code}</h2>
-          <p>
-            {currentCodes[0]?.reward} · Checked {currentCodes[0]?.checkedAt}
-          </p>
-        </div>
-        <div className="current-code-actions">
-          {currentCodes[0] ? <CopyCodeButton code={currentCodes[0].code} /> : null}
-          <Link className="button secondary" href="/codes">View all codes</Link>
-        </div>
-      </section>
+      {currentCode ? (
+        <section className="page-shell current-code-strip" aria-labelledby="current-code-title">
+          <div>
+            <span className="tool-badge">Current code</span>
+            <h2 id="current-code-title">{currentCode.code}</h2>
+            <p>
+              {currentCode.reward} · Checked {currentCode.checkedAt}
+            </p>
+          </div>
+          <div className="current-code-actions">
+            <CopyCodeButton code={currentCode.code} />
+            <Link className="button secondary" href="/codes">View all codes</Link>
+          </div>
+        </section>
+      ) : null}
 
       <section className="page-shell tool-entry-grid" aria-labelledby="homepage-tools">
         <div className="mini-section-title">
