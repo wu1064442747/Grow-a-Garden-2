@@ -502,9 +502,12 @@ export const stockSignals: StockSignal[] = [
   },
 ];
 
+export type StockPredictionStatus = "Historical";
+
 export type StockPrediction = {
   item: string;
   category: "Seeds" | "Gear";
+  status: StockPredictionStatus;
   windows: string[];
   note: string;
 };
@@ -513,18 +516,21 @@ export const stockPredictions: StockPrediction[] = [
   {
     item: "Dragon Breath",
     category: "Seeds",
+    status: "Historical",
     windows: ["Historical: June 15, 13:20", "Historical: June 16, 18:55", "Historical: June 18, 01:25"],
     note: "Expired June community prediction example. Do not treat as current stock.",
   },
   {
     item: "Cherry",
     category: "Seeds",
+    status: "Historical",
     windows: ["Historical: June 16, 21:15", "Historical: June 16, 00:35"],
     note: "Expired June community prediction example. Do not treat as current stock.",
   },
   {
     item: "Super Sprinkler",
     category: "Gear",
+    status: "Historical",
     windows: ["Historical: June 14, 05:35", "Historical: June 14, 08:20", "Historical: June 16, 11:20"],
     note: "Expired June community prediction example. Do not treat as current stock.",
   },
