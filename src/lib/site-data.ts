@@ -4,6 +4,130 @@ export const siteName = "Grow a Garden 2 Guide";
 
 export const discordInviteUrl = "https://discord.gg/HmPjaSEd";
 
+export const gameLaunch = {
+  title: "Play Grow a Garden 2",
+  description:
+    "Open Grow a Garden 2, then use this hub for codes, seed choices, stock signals, weather events, and guide routes.",
+  playUrl: "https://www.roblox.com/",
+  playLabel: "Play on Roblox",
+  lastReviewed: "July 7, 2026",
+  disclaimer: "Fan-made guide hub. Not affiliated with Roblox or the game developers.",
+} as const;
+
+export type SeedRecommendationTier = "S" | "A" | "B" | "Starter";
+
+export type SeedRecommendation = {
+  name: string;
+  tier: SeedRecommendationTier;
+  rarity: "Common" | "Uncommon" | "Rare" | "Epic" | "Legendary" | "Mythic" | "Super" | "Pack seed";
+  source: string;
+  useCase: "Beginner cash" | "Midgame income" | "Late-game upside" | "Event or mutation play";
+  confidence: "Verified" | "Reported" | "Unconfirmed";
+  note: string;
+};
+
+export const seedRecommendations: SeedRecommendation[] = [
+  {
+    name: "Mushroom",
+    tier: "S",
+    rarity: "Epic",
+    source: "Seed shop reports",
+    useCase: "Late-game upside",
+    confidence: "Reported",
+    note: "High-value target when stock appears, but do not plan around exact value without current in-game checks.",
+  },
+  {
+    name: "Dragon's Breath",
+    tier: "S",
+    rarity: "Super",
+    source: "Community stock predictions",
+    useCase: "Event or mutation play",
+    confidence: "Reported",
+    note: "Useful for reminder windows; confirm in-game before spending or trading.",
+  },
+  {
+    name: "Cherry",
+    tier: "A",
+    rarity: "Legendary",
+    source: "Community stock predictions",
+    useCase: "Midgame income",
+    confidence: "Reported",
+    note: "Good watchlist seed because predictions exist, but confidence remains lower than verified stock.",
+  },
+  {
+    name: "Green Bean",
+    tier: "A",
+    rarity: "Epic",
+    source: "TEAMGREENBEAN code reward",
+    useCase: "Beginner cash",
+    confidence: "Verified",
+    note: "Current code reward path makes this an easy first seed to highlight.",
+  },
+  {
+    name: "Carrot",
+    tier: "Starter",
+    rarity: "Common",
+    source: "Starter seed shop",
+    useCase: "Beginner cash",
+    confidence: "Reported",
+    note: "Use cheap starter crops to keep plots active before waiting for rare stock.",
+  },
+  {
+    name: "Strawberry",
+    tier: "Starter",
+    rarity: "Common",
+    source: "Starter seed shop",
+    useCase: "Beginner cash",
+    confidence: "Reported",
+    note: "Better as cash flow filler than as a late-game target.",
+  },
+];
+
+export const homepageToolEntries = [
+  {
+    title: "Seed Tier List",
+    href: "/guides/seeds-tier-list",
+    description: "Compare seed tiers by rarity, source, use case, and confidence before spending.",
+    statusLabel: "Native tool",
+  },
+  {
+    title: "Stock Tracker",
+    href: "/stock-tracker",
+    description: "Check reported seed, gear, pet, event, trading, and weather signals with freshness labels.",
+    statusLabel: "Freshness labels",
+  },
+  {
+    title: "Weather Events",
+    href: "/guides/weather-events",
+    description: "Plan around weather and mutation windows without treating reports as guaranteed live state.",
+    statusLabel: "Event guide",
+  },
+  {
+    title: "Codes",
+    href: "/codes",
+    description: "See working, watched, and expired Grow a Garden 2 codes with checked dates.",
+    statusLabel: "Checked code",
+  },
+] as const;
+
+export const weatherQuickChecks = [
+  {
+    event: "Night cycle",
+    status: "Verified",
+    action: "Protect high-value crops before night stealing windows.",
+  },
+  {
+    event: "Weather mutations",
+    status: "Reported",
+    action: "Keep spare plots ready and verify the event effect in-game.",
+  },
+  {
+    event: "Admin Abuse events",
+    status: "Unconfirmed",
+    action: "Treat timing chatter as a watch signal until an in-game timer appears.",
+  },
+] as const;
+
 export const pageKeywordFocus = [
   {
     page: "Homepage",
@@ -321,7 +445,7 @@ export type StockSignalStatus = "Verified" | "Reported" | "Unconfirmed" | "Roadm
 
 export type StockSignal = {
   item: string;
-  category: "Seeds" | "Gear" | "Pets" | "Events" | "Trading";
+  category: "Seeds" | "Gear" | "Pets" | "Events" | "Trading" | "Weather";
   status: StockSignalStatus;
   lastSeen: string;
   sourceType: string;
@@ -392,6 +516,15 @@ export const stockSignals: StockSignal[] = [
     sourceType: "Community value hubs",
     action: "Use value pages as a second opinion, not final pricing.",
     note: "Demand changes fast around new pets, Venom services, and event supply.",
+  },
+  {
+    item: "Weather mutation windows",
+    category: "Weather",
+    status: "Reported",
+    lastSeen: "June 2026 launch guide demand",
+    sourceType: "Weather guide and community alerts",
+    action: "Use weather as a reminder to check crops and mutation timing, not as guaranteed live state.",
+    note: "Weather and stock searches overlap because mutation windows can change whether a seed is worth planting now.",
   },
 ];
 
@@ -798,16 +931,23 @@ export const toolCards = [
     keywords: ["codes", "gag2 codes", "gag 2 codes", "grow a garden 2 codes", "redeem"],
   },
   {
+    title: "Seed Tier List",
+    href: "/guides/seeds-tier-list",
+    description: "Grow a Garden 2 seed tier list with rarity, source, use case, and confidence labels.",
+    status: "Native tool",
+    keywords: ["seeds", "seed tier list", "gag2 seeds", "grow a garden 2 seeds", "best seeds", "plants"],
+  },
+  {
     title: "Stock Tracker",
     href: "/stock-tracker",
-    description: "Grow a Garden 2 stock, GAG2 stock notifier signals, pets, events, trading, and freshness labels.",
+    description: "Grow a Garden 2 stock, GAG2 stock notifier signals, pets, events, trading, weather, and freshness labels.",
     status: "Signals",
-    keywords: ["stock", "notifier", "stock notifier", "gag2 stock", "gag 2 stock", "gag2 stock notifier", "gag stock notifier", "grow a garden 2 stock notifier"],
+    keywords: ["stock", "notifier", "stock notifier", "gag2 stock", "gag 2 stock", "weather", "gag2 stock notifier", "grow a garden 2 stock notifier"],
   },
   {
     title: "Guide Directory",
     href: "/guides",
-    description: "Grow a Garden 2 guides and GAG2 guides grouped by real search intent, not fake category counts.",
+    description: "Grow a Garden 2 guides and GAG2 guides grouped by real search intent.",
     status: "Index",
     keywords: ["gag 2", "gag2", "grow a garden 2", "gag2 guides", "grow a garden 2 guides", "guides"],
   },
