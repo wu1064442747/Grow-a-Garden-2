@@ -8,7 +8,7 @@ export const gameLaunch = {
   title: "Play Grow a Garden 2",
   description:
     "Open Grow a Garden 2, then use this hub for codes, seed choices, stock signals, weather events, and guide routes.",
-  playUrl: "https://www.roblox.com/",
+  playUrl: "https://www.roblox.com/games/97598239454123/Grow-a-Garden-2",
   playLabel: "Play on Roblox",
   lastReviewed: "July 7, 2026",
   disclaimer: "Fan-made guide hub. Not affiliated with Roblox or the game developers.",
@@ -82,33 +82,6 @@ export const seedRecommendations: SeedRecommendation[] = [
     note: "Better as cash flow filler than as a late-game target.",
   },
 ];
-
-export const homepageToolEntries = [
-  {
-    title: "Seed Tier List",
-    href: "/guides/seeds-tier-list",
-    description: "Compare seed tiers by rarity, source, use case, and confidence before spending.",
-    statusLabel: "Native tool",
-  },
-  {
-    title: "Stock Tracker",
-    href: "/stock-tracker",
-    description: "Check reported seed, gear, pet, event, trading, and weather signals with freshness labels.",
-    statusLabel: "Freshness labels",
-  },
-  {
-    title: "Weather Events",
-    href: "/guides/weather-events",
-    description: "Plan around weather and mutation windows without treating reports as guaranteed live state.",
-    statusLabel: "Event guide",
-  },
-  {
-    title: "Codes",
-    href: "/codes",
-    description: "See working, watched, and expired Grow a Garden 2 codes with checked dates.",
-    statusLabel: "Checked code",
-  },
-] as const;
 
 export const weatherQuickChecks = [
   {
@@ -959,6 +932,30 @@ export const toolCards = [
     keywords: ["discord", "grow a garden 2 discord", "gag2 discord", "community", "questions", "updates"],
   },
 ];
+
+const weatherToolEntry = {
+  title: "Weather Events",
+  href: "/guides/weather-events",
+  description: "Plan around weather and mutation windows without treating reports as guaranteed live state.",
+  status: "Event guide",
+};
+
+const homepageToolEntryTitles = new Set(["Seed Tier List", "Stock Tracker", "Codes Tracker"]);
+
+export const homepageToolEntries = [
+  ...toolCards.filter((tool) => homepageToolEntryTitles.has(tool.title)),
+  weatherToolEntry,
+]
+  .sort((a, b) => {
+    const order = ["Seed Tier List", "Stock Tracker", "Weather Events", "Codes Tracker"];
+    return order.indexOf(a.title) - order.indexOf(b.title);
+  })
+  .map((tool) => ({
+    title: tool.title === "Codes Tracker" ? "Codes" : tool.title,
+    href: tool.href,
+    description: tool.description,
+    statusLabel: tool.status,
+  }));
 
 export function searchTools(query: string) {
   const normalizedQuery = query.trim().toLowerCase();
