@@ -5,13 +5,14 @@ export const siteName = "Grow a Garden 2 Guide";
 export const discordInviteUrl = "https://discord.gg/HmPjaSEd";
 
 export const gameLaunch = {
-  title: "Play Grow a Garden 2",
+  title: "Open Grow a Garden 2 on Roblox",
   description:
-    "Open Grow a Garden 2, then use this hub for codes, seed choices, stock signals, weather events, and guide routes.",
+    "Open the Grow a Garden 2 Roblox page, then use this hub for codes, seed choices, stock signals, weather events, and guide routes.",
   playUrl: "https://www.roblox.com/games/97598239454123/Grow-a-Garden-2",
-  playLabel: "Play on Roblox",
+  playLabel: "Open Roblox page",
   lastReviewed: "July 7, 2026",
-  disclaimer: "Fan-made guide hub. Not affiliated with Roblox or the game developers.",
+  disclaimer:
+    "Fan-made guide hub. Not affiliated with Roblox or the game developers. Roblox availability can change by region, server, or experience status.",
 } as const;
 
 export type SeedRecommendationTier = "S" | "A" | "B" | "Starter";
@@ -460,8 +461,8 @@ export const stockSignals: StockSignal[] = [
     status: "Reported",
     lastSeen: "June 15, 2026 Discord prediction post",
     sourceType: "Community stock prediction",
-    action: "Watch the listed prediction windows, but confirm in-game before spending.",
-    note: "Reported windows include June 15 13:20, June 16 18:55, and June 18 01:25; the channel warns predictions are not always accurate.",
+    action: "Use this only as a historical June prediction example; do not treat it as current stock.",
+    note: "Expired reported windows included June 15 13:20, June 16 18:55, and June 18 01:25; the channel warned predictions were not always accurate.",
   },
   {
     item: "Cherry prediction",
@@ -469,8 +470,8 @@ export const stockSignals: StockSignal[] = [
     status: "Reported",
     lastSeen: "June 15, 2026 Discord prediction post",
     sourceType: "Community stock prediction",
-    action: "Use as a reminder to check the shop, not as guaranteed stock.",
-    note: "Reported windows include June 16 21:15 and June 16 00:35; one June 14 window was marked missed.",
+    action: "Use this only as a historical June prediction example; do not treat it as current stock.",
+    note: "Expired reported windows included June 16 21:15 and June 16 00:35; one June 14 window was marked missed.",
   },
   {
     item: "Super Sprinkler prediction",
@@ -478,8 +479,8 @@ export const stockSignals: StockSignal[] = [
     status: "Reported",
     lastSeen: "June 15, 2026 Discord prediction post",
     sourceType: "Community stock prediction",
-    action: "Check the gear shop near the prediction window and avoid pre-trading from the alert alone.",
-    note: "Reported windows include June 14 05:35, June 14 08:20, and June 16 11:20.",
+    action: "Use this only as a historical June prediction example; do not treat it as current gear stock.",
+    note: "Expired reported windows included June 14 05:35, June 14 08:20, and June 16 11:20.",
   },
   {
     item: "Trading values",
@@ -512,20 +513,20 @@ export const stockPredictions: StockPrediction[] = [
   {
     item: "Dragon Breath",
     category: "Seeds",
-    windows: ["June 15, 13:20", "June 16, 18:55", "June 18, 01:25"],
-    note: "Community prediction only. Confirm in-game before spending or trading.",
+    windows: ["Historical: June 15, 13:20", "Historical: June 16, 18:55", "Historical: June 18, 01:25"],
+    note: "Expired June community prediction example. Do not treat as current stock.",
   },
   {
     item: "Cherry",
     category: "Seeds",
-    windows: ["June 16, 21:15", "June 16, 00:35"],
-    note: "A June 14 prediction was marked missed, so keep the confidence low.",
+    windows: ["Historical: June 16, 21:15", "Historical: June 16, 00:35"],
+    note: "Expired June community prediction example. Do not treat as current stock.",
   },
   {
     item: "Super Sprinkler",
     category: "Gear",
-    windows: ["June 14, 05:35", "June 14, 08:20", "June 16, 11:20"],
-    note: "Gear-stock alert, not guaranteed live availability.",
+    windows: ["Historical: June 14, 05:35", "Historical: June 14, 08:20", "Historical: June 16, 11:20"],
+    note: "Expired June community prediction example. Do not treat as current stock.",
   },
 ];
 
@@ -895,13 +896,25 @@ export const guides: Guide[] = [
   },
 ];
 
-export const toolCards = [
+export type ToolCard = {
+  title: string;
+  href: string;
+  description: string;
+  status: string;
+  keywords: string[];
+  homepagePriority?: number;
+  homepageTitle?: string;
+};
+
+export const toolCards: ToolCard[] = [
   {
     title: "Codes Tracker",
     href: "/codes",
     description: "Grow a Garden 2 codes and GAG2 codes: working code first, watchlist codes separated, and redeem troubleshooting.",
     status: "Verified",
     keywords: ["codes", "gag2 codes", "gag 2 codes", "grow a garden 2 codes", "redeem"],
+    homepagePriority: 4,
+    homepageTitle: "Codes",
   },
   {
     title: "Seed Tier List",
@@ -909,6 +922,7 @@ export const toolCards = [
     description: "Grow a Garden 2 seed tier list with rarity, source, use case, and confidence labels.",
     status: "Native tool",
     keywords: ["seeds", "seed tier list", "gag2 seeds", "grow a garden 2 seeds", "best seeds", "plants"],
+    homepagePriority: 1,
   },
   {
     title: "Stock Tracker",
@@ -916,6 +930,7 @@ export const toolCards = [
     description: "Grow a Garden 2 stock, GAG2 stock notifier signals, pets, events, trading, weather, and freshness labels.",
     status: "Signals",
     keywords: ["stock", "notifier", "stock notifier", "gag2 stock", "gag 2 stock", "weather", "gag2 stock notifier", "grow a garden 2 stock notifier"],
+    homepagePriority: 2,
   },
   {
     title: "Guide Directory",
@@ -938,20 +953,14 @@ const weatherToolEntry = {
   href: "/guides/weather-events",
   description: "Plan around weather and mutation windows without treating reports as guaranteed live state.",
   status: "Event guide",
+  homepagePriority: 3,
 };
 
-const homepageToolEntryTitles = new Set(["Seed Tier List", "Stock Tracker", "Codes Tracker"]);
-
-export const homepageToolEntries = [
-  ...toolCards.filter((tool) => homepageToolEntryTitles.has(tool.title)),
-  weatherToolEntry,
-]
-  .sort((a, b) => {
-    const order = ["Seed Tier List", "Stock Tracker", "Weather Events", "Codes Tracker"];
-    return order.indexOf(a.title) - order.indexOf(b.title);
-  })
+export const homepageToolEntries = [...toolCards, weatherToolEntry]
+  .filter((tool) => typeof tool.homepagePriority === "number")
+  .sort((a, b) => (a.homepagePriority ?? 0) - (b.homepagePriority ?? 0))
   .map((tool) => ({
-    title: tool.title === "Codes Tracker" ? "Codes" : tool.title,
+    title: "homepageTitle" in tool && tool.homepageTitle ? tool.homepageTitle : tool.title,
     href: tool.href,
     description: tool.description,
     statusLabel: tool.status,
